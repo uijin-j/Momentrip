@@ -3,12 +3,6 @@ const Sequelize = require('sequelize');
 module.exports = class Book extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            book_id: {
-                type: Sequelize.INTEGER,
-                primaryKey: true,
-                allowNull: false,
-                unique: true,
-            },
             book_img: {
                 type: Sequelize.STRING(200),
                 allowNull: true,
@@ -40,8 +34,6 @@ module.exports = class Book extends Sequelize.Model {
     static associate(db) {
         db.Book.hasMany(db.Moment);
         db.Book.belongsTo(db.User);
-        db.Book.belongsToMany(db.Category, {
-            foreignKey:'book_id',
-            through: 'BookCategory' });
+        db.Book.belongsToMany(db.Category, { through: 'BookCategory' });
     }
 };

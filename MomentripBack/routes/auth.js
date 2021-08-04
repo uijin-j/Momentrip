@@ -15,14 +15,13 @@ router.post('/join',isNotLoggedIn, async (req,res,next) => {
             return res.status(400).json({error:[{message: '이미 존재하는 회원입니다.'}]});
         }
         const hash = await bcrypt.hash(password,12);
-        await User.create({
+        let user = await User.create({
             email,
             password : hash,
             nick,
             name,
         });
-        console.log('success');
-        return;
+        return res.json(user);
     }catch(error){
         console.error(error);
         return next(error);

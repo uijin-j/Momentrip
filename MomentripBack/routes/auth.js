@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const jwtStrategy = require('../passport/jwtStrategy');
 
 const router = express.Router();
 
@@ -29,8 +31,8 @@ router.post('/join',isNotLoggedIn, async (req,res,next) => {
 });
 
 
-router.post('/login', isNotLoggedIn, (req,res,next) => {
-    passport.authenticate('local', (authError, user, info) => {
+router.post('/login', isNotLoggedIn,jwtStrategy(), (req,res,next) => {
+    passport.authenticate('local',{session: false}, (authError, user, info) => {
         if (authError) {
             console.error(authError);
             return next(authError);
@@ -38,12 +40,23 @@ router.post('/login', isNotLoggedIn, (req,res,next) => {
         if (!user) {
             return res.redirect(`/?loginError=${info.message}`);
         }
-        return req.login(user, (loginError) => {
+        return req.login(user, {session:false}, (loginError) => {
             if (loginError) {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+
+            //로그인에 성공하면 jwt 발급해준다.
+            const token = jwt.sign({
+                id : User.id,
+                nick : User.nick,
+            }, process.env.JWT_SECRET);
+
+            return res.json({
+                code:200,
+                message:'토큰이 발급되었습니다',
+                token,
+            });
         });
     })(req, res, next);
 });

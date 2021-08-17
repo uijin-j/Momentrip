@@ -25,12 +25,11 @@ module.exports = () => {
                     name : profile.username,
                     provider : profile.provider,
                 });
-                done(null, user);
-                return res.status(200).json(user);
+                return done(null, user, {message: 'Kakao login success'});
             }
         } catch (error) {
             console.error(error);
-            done(error);
+            return done(null, false, { message: 'Kakao login fail.' });
         }
     }));
 };

@@ -7,8 +7,6 @@ module.exports={
             bookTitle,
             bookPublic,
             bookHit,
-            bookStartDate,
-            bookEndDate
         } = req.body;
 
         await bookService.register(
@@ -16,8 +14,6 @@ module.exports={
             bookImg,
             bookPublic,
             bookHit,
-            bookStartDate,
-            bookEndDate,
             res);
         return res;
     },
@@ -49,8 +45,6 @@ module.exports={
             bookPublic,
             bookHit,
             img,
-            bookStartDate,
-            bookEndDate
         } = req.body;
         if (!bookImg) {
             bookImg = img;
@@ -60,12 +54,8 @@ module.exports={
             bookImg,
             bookPublic,
             bookHit,
-            bookStartDate,
-            bookEndDate
         ), {
             where : {id}
         }
     }
-
-
 }

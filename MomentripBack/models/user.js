@@ -34,8 +34,8 @@ module.exports = class User extends Sequelize.Model {
             },
         }, {
             sequelize,
-            timestamps: true,       //createdTime, updatedTime
-            paranoid: true,         //deletedTime
+            timestamps: false,       //createdTime, updatedTime
+            paranoid: false,         //deletedTime
             underscored: false,
             modelName: 'User',
             tableName: 'user',

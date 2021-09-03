@@ -10,17 +10,15 @@ module.exports = {
         bookImgFile,
         bookPublic,
         bookHit,
-        bookStartDate,
-        bookEndDate,
         res
     ) =>{
-        if( !bookTitle || !bookImgFile || !bookPublic || !bookHit|| !bookStartDate ||!bookEndDate){
+        if( !bookTitle || !bookImgFile || !bookPublic || !bookHit){
             console.log("필요값 누락");
 
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(bookTitle, bookImgFile, bookPublic, bookHit, bookStartDate, bookEndDate);
+            const book = await bookMethod.register(bookTitle, bookImgFile, bookPublic, bookHit);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);
@@ -74,10 +72,8 @@ module.exports = {
         bookImg,
         bookPublic,
         bookHit,
-        bookStartDate,
-        bookEndDate,
         res) => {
-        if(!id || !bookTitle || !bookImg || bookPublic || bookHit ||bookStartDate || bookEndDate || res){
+        if(!id || !bookTitle || !bookImg || bookPublic || bookHit || res){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
@@ -87,7 +83,7 @@ module.exports = {
                 console.log("해당 모멘트북이 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
-            const book = await bookMethod.update(id, bookTitle, bookImg, bookPublic, bookHit, bookStartDate, bookEndDate);
+            const book = await bookMethod.update(id, bookTitle, bookImg, bookPublic, bookHit);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, {id}));
         }catch (err){
             console.error(err);

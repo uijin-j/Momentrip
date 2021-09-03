@@ -1,5 +1,5 @@
 const{
-    Book, sequelize
+    Book
 }= require('../models');
 const {
     Op

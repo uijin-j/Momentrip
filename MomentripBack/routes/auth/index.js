@@ -1,8 +1,17 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+<<<<<<< Updated upstream:MomentripBack/routes/auth.js
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+=======
+const User = require('../../models/user');
+const {local} = require('../../passport')
+
+const router = express.Router();
+
+require('dotenv').config();
+>>>>>>> Stashed changes:MomentripBack/routes/auth/index.js
 const jwt = require('jsonwebtoken');
 const jwtStrategy = require('../passport/jwtStrategy');
 

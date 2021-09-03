@@ -8,7 +8,7 @@ const {
 module.exports ={
     register : async(
         bookTitle,
-        bookImg,
+        bookImgFile,
         bookPublic,
         bookHit,
         bookStartDate,
@@ -16,7 +16,7 @@ module.exports ={
         try{
             const book = await Book.create({
                 bookTitle,
-                bookImg,
+                bookImg: bookImgFile,
                 bookPublic,
                 bookHit,
                 bookStartDate,
@@ -38,6 +38,14 @@ module.exports ={
     findAll : async () => {
         try{
             const books = Book.findAll();
+            return books;
+        }catch (err){
+            throw err;
+        }
+    },
+    findByUserId : async (user_id) =>{
+        try {
+            const books = await Book.findAll({where : {UserId}});
             return books;
         }catch (err){
             throw err;
@@ -70,17 +78,10 @@ module.exports ={
             throw err;
         }
     },
-    search: async (title) => {
+    delete : async (id) => {
         try {
-            const books = await Book.findAll({
-                where: {
-                    name: {
-                        [Op.like]: "%" + title + "%"
-                    },
-                    // isDeleted: false
-                }
-            });
-            return books;
+            const book = await Book.delete( {where : {id}});
+            return book;
         } catch (err) {
             throw err;
         }

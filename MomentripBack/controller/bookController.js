@@ -2,18 +2,22 @@ const bookService = require('../service/bookService');
 
 module.exports={
     registerBook: async (req, res) => {
-        const bookImg = req.file;
+        const bookImgFile = req.file;
         const {
             bookTitle,
             bookPublic,
             bookHit,
+            bookStartDate,
+            bookEndDate
         } = req.body;
 
         await bookService.register(
             bookTitle,
-            bookImg,
+            bookImgFile,
             bookPublic,
             bookHit,
+            bookStartDate,
+            bookEndDate,
             res);
         return res;
     },
@@ -45,17 +49,27 @@ module.exports={
             bookPublic,
             bookHit,
             img,
+            bookStartDate,
+            bookEndDate
         } = req.body;
         if (!bookImg) {
             bookImg = img;
         }
         await bookService.updateBook(
+            id,
             bookTitle,
             bookImg,
             bookPublic,
             bookHit,
-        ), {
-            where : {id}
-        }
+            bookStartDate,
+            bookEndDate,
+            res)
+        return res;
+    },
+    deleteBook : async (req, res) =>{
+        const { id } = req.params;
+        await bookService.deleteBook(id, res);
+
+        return res;
     }
 }

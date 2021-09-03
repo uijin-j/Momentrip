@@ -70,7 +70,19 @@ module.exports = {
   DELETE_MOMENT_SUCCESS : "moment 삭제 성공",
   DELETE_MOMENT_FAIL : "moment 삭제 실패",
 
-  /*BOOK*/
-  NO_BOOK : "존재하지 않는 book"
+  /* BOOK */
+  REGISTER_BOOK_SUCCESS : "모멘트북 등록 성공",
+  REGISTER_BOOK_FAIL : "모멘트북 등록 실패",
+  FIND_ALL_BOOK_SUCCESS : "전체 모멘트북 조회 성공",
+  FIND_ALL_BOOK_FAIL : "전체 모멘트북 조회 실패",
+  NO_EXIST_BOOK : "해당 모멘트북이 존재하지 않습니다.",
+  FIND_BOOK_BY_ID_SUCCESS : "특정 모멘트북 조회 성공",
+  FIND_BOOK_BY_ID_FAIL : "특정 모멘트북 조회 실패",
+  FIND_BOOK_BY_USER_ID_SUCCESS : "특정 유저 모멘트북 조회 성공",
+  FIND_BOOK_BY_USER_ID_FAIL : "특정 유저 모멘트북 조회 실패",
+  UPDATE_BOOK_SUCCESS : "모멘트북 업데이트 성공",
+  UPDATE_BOOK_FAIL : "모멘트북 업데이트 실패",
+  DELETE_BOOK_SUCCESS : "모멘트북 삭제 성공",
+  DELETE_BOOK_FAIL : "모멘트북 삭제 실패",
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="momentrip@localhost" uuid="915d95ba-2309-4ca9-97f6-608a5775021b">
+    <data-source name="momentrip@localhost" uuid="ac7466ae-f165-4bd2-ad68-ed886167379f">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <schema-mapping />
     </data-source>

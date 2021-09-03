@@ -11,6 +11,8 @@ dotenv.config();
 
 const indexRouter = require('./routes/index');
 const { sequelize } = require('./models');
+
+//이 부분
 const passportConfig = require('./passport');
 
 const app = express();

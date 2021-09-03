@@ -4,6 +4,7 @@ const passport = require('passport');
 <<<<<<< Updated upstream:MomentripBack/routes/auth.js
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+<<<<<<< HEAD:MomentripBack/routes/auth/index.js
 =======
 const User = require('../../models/user');
 const {local} = require('../../passport')
@@ -14,12 +15,30 @@ require('dotenv').config();
 >>>>>>> Stashed changes:MomentripBack/routes/auth/index.js
 const jwt = require('jsonwebtoken');
 const jwtStrategy = require('../passport/jwtStrategy');
+=======
+const {local} = require('../passport/index')
+>>>>>>> BackEnd_ysl:MomentripBack/routes/auth.js
 
 const router = express.Router();
 
-router.post('/join',isNotLoggedIn, async (req,res,next) => {
-    const { email, password, nick, name } = req.body;
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
+router.post('/signIn' ,(req, res, next) => {
+    passport.authenticate('signin', (err, user, info) => {
+        if (!user) {
+            return res.status(400).json({ message: info.message });
+        }
+        const token = jwt.sign(
+            { Email : req.body.email },
+            process.env.JWT_SECRET_KEY
+        );
+        return res.json({ user ,token });
+    })(req, res, next);
+});
+
+router.post('/signUp', async (req,res,next) => {
+    const { email, password, nick, name } = req.body;
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
@@ -40,6 +59,7 @@ router.post('/join',isNotLoggedIn, async (req,res,next) => {
 });
 
 
+<<<<<<< HEAD:MomentripBack/routes/auth/index.js
 router.post('/login', isNotLoggedIn,jwtStrategy(), (req,res,next) => {
     passport.authenticate('local',{session: false}, (authError, user, info) => {
         if (authError) {
@@ -68,6 +88,15 @@ router.post('/login', isNotLoggedIn,jwtStrategy(), (req,res,next) => {
             });
         });
     })(req, res, next);
+=======
+router.get('/kakao', passport.authenticate('kakao'));
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect: '/',
+}), (req, res) => {
+    console.log("kakao login 성공");
+    console.log("get /post /auth/kakao/callback");
+    res.redirect('/');
+>>>>>>> BackEnd_ysl:MomentripBack/routes/auth.js
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const momentService = requiure('../service/momentService');
+const momentService = require('../service/momentService');
 
 module.exports = {
     registerMoment : async (req,res) => {

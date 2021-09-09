@@ -12,8 +12,8 @@ module.exports = class Book extends Sequelize.Model {
                 allowNull: true,
             },
             book_public: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false,
+                type: Sequelize.STRING(20),
+                allowNull: true,
             },
             book_hit: {
                 type: Sequelize.INTEGER,
@@ -22,7 +22,7 @@ module.exports = class Book extends Sequelize.Model {
         }, {
             sequelize,
             timestamps: false,
-            paranoid: false,
+            paranoid: true,
             underscored: false,
             modelName: 'Book',
             tableName: 'book',

@@ -1,9 +1,8 @@
-const { sequelize } = require('../models');
+const util = require("../modules/util")
 const statusCode = require("../modules/statusCode");
 const responseMessage = require('../modules/responseMessage');
 const bookMethod = require('../method/bookMethod');
-const util = require("../modules/util")
-// const {Util}
+
 module.exports = {
     register : async (
         bookTitle,
@@ -13,6 +12,7 @@ module.exports = {
         res
     ) =>{
         if( !bookTitle || !bookImgFile || !bookPublic || !bookHit){
+            console.log("bookImgFile : " + bookImgFile);
             console.log("필요값 누락");
 
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));

@@ -10,18 +10,16 @@ module.exports ={
         bookTitle,
         bookImgFile,
         bookPublic,
-        bookHit,
-        bookStartDate,
-        bookEndDate)=>{
+        bookHit)=>{
         try{
+            console.log("Book.create 시작!!!!!!!!!~!~!~!~!");
             const book = await Book.create({
-                bookTitle,
-                bookImg: bookImgFile,
-                bookPublic,
-                bookHit,
-                bookStartDate,
-                bookEndDate
+                book_title : bookTitle,
+                book_img: bookImgFile,
+                book_public : bookPublic,
+                book_hit : bookHit,
             })
+            console.log("Book.create 성공!");
             return book;
         }catch (err){
             throw err;
@@ -57,8 +55,6 @@ module.exports ={
         bookImg,
         bookPublic,
         bookHit,
-        bookStartDate,
-        bookEndDate
     ) => {
         try {
             await Book.update({
@@ -66,8 +62,6 @@ module.exports ={
                 bookImg,
                 bookPublic,
                 bookHit,
-                bookStartDate,
-                bookEndDate
             }, {
                 where: {
                     id

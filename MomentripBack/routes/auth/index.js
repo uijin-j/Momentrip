@@ -2,24 +2,13 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const User = require('../../models/user');
-<<<<<<< HEAD
 require('dotenv').config();
-=======
 
 const router = express.Router();
-
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const jwtStrategy = require('../../passport/jwtStrategy');
 const {local} = require('../../passport/index')
->>>>>>> BackEnd_ysl
 
-
-<<<<<<< HEAD
-const jwt = require('jsonwebtoken');
-=======
-require('dotenv').config();
->>>>>>> BackEnd_ysl
 
 router.post('/signIn' ,(req, res, next) => {
     passport.authenticate('signin', (err, user, info) => {
@@ -54,39 +43,6 @@ router.post('/signUp', async (req,res,next) => {
         return next(error);
     }
 });
-
-<<<<<<< HEAD
-=======
-/*router.post('/login', jwtStrategy, (req,res,next) => {
-    passport.authenticate('local', {session: false}, (authError, user, info) => {
-        if (authError) {
-            console.error(authError);
-            return next(authError);
-        }
-        if (!user) {
-            return res.redirect(`/?loginError=${info.message}`);
-        }
-        return req.login(user, {session: false}, (loginError) => {
-            if (loginError) {
-                console.error(loginError);
-                return next(loginError);
-            }
-
-            //로그인에 성공하면 jwt 발급해준다.
-            const token = jwt.sign({
-                id: User.id,
-                nick: User.nick,
-            }, process.env.JWT_SECRET);
-
-            return res.json({
-                code: 200,
-                message: '토큰이 발급되었습니다',
-                token,
-            });
-        });
-    })(req, res, next);
-})*/
->>>>>>> BackEnd_ysl
 
 router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {

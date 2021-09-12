@@ -2,12 +2,17 @@ const bookService = require('../service/bookService');
 
 module.exports={
     registerBook: async (req, res) => {
-        const bookImgFile = req.file;
+        // const bookImgFile = req.file; //원래 코드
+        const bookImgFile = "Test.jpg"; //임시 코드
         const {
             bookTitle,
             bookPublic,
             bookHit,
         } = req.body;
+        /*console.log("req.body : " + req.body)
+        console.log("req.file : " + req.file);
+        console.log("bookImgFile : " + bookImgFile);
+        console.log("bookTitle : " + bookTitle);*/
 
         await bookService.register(
             bookTitle,
@@ -33,7 +38,7 @@ module.exports={
         const {
             user_id
         } = req.params;
-        await bookService.findBookByUserId(user_id, res);
+        await bookService.findBookByUserId(user_id,res);
 
         return res;
     },

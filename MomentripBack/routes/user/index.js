@@ -1,11 +1,13 @@
-/*
 const express = require('express');
-
-const User = require('../../models/user');
-
 const router = express.Router();
+const userController = require('../../controller/userController');
 
-router.post('/:id/follow', async (req, res, next) => {
+router.get('/', userController.findAll);
+router.get('/:user_id', userController.findUserById);
+router.patch('/user_id', userController.updateUser);
+router.delete('/user_id', userController.deleteUser);
+
+/*router.post('/:id/follow', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { id: req.user.id } });
     if (user) {
@@ -18,7 +20,7 @@ router.post('/:id/follow', async (req, res, next) => {
     console.error(error);
     next(error);
   }
-});
+});*/
 
 module.exports = router;
-*/
+

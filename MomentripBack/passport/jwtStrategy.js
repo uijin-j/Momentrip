@@ -13,7 +13,7 @@ module.exports = () => {
         // header에 bearer 스키마에 담겨온 토큰을 해석하는 옵션
         jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken(),
         // 해당 복호화 방법 사용 옵션
-        secretOrKey : process.env.JWT_SECRET,
+        secretOrKey : process.env.JWT_SECRET_KEY,
     }, async (jwtPayload, done) => {
         try{
             const user = await User.findOne({where : {jwtPayload}});

@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../../controller/userController');
 
+
 router.get('/', userController.findAll);
 router.get('/:user_id', userController.findUserById);
-router.patch('/user_id', userController.updateUser);
-router.delete('/user_id', userController.deleteUser);
+router.patch('/:user_id', userController.updateUser);
+router.delete('/:user_id', userController.deleteUser);
+
+router.post('/follow', userController.followUser);
 
 /*router.post('/:id/follow', async (req, res, next) => {
   try {

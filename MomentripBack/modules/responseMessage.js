@@ -23,6 +23,16 @@ module.exports = {
   MISS_MATCH_PW: "비밀번호가 일치하지 않습니다",
 
   /* User */
+  FIND_USER_ALL_FAIL : "전체 사용자 조회 실패",
+  FIND_USER_ALL_SUCCESS : "전체 사용자 조회 성공",
+  FIND_USER_BY_USER_ID_SUCCESS : "특정 사용자 유저아이디 조회 성공",
+  FIND_USER_BY_USER_ID_FAIL : "특정 사용자 유저아이디 조회 실패",
+  UPDATE_USER_FAIL : "사용자 정보 수정 실패",
+  UPDATE_USER_SUCCESS : "사용자 정보 수정 성공",
+  DELETE_USER_SUCCESS : "사용자 삭제 성공",
+  DELETE_USER_FAIL : "사용자 삭제 실패",
+
+  /*/!* User *!/
   READ_USER_SUCCESS: "사용자 조회 성공",
   READ_USER_ALL_SUCCESS: "전체 사용자 조회 실패",
   READ_USER_FAIL: "사용자 조회 성공",
@@ -48,7 +58,7 @@ module.exports = {
   GET_USER_SET_SUCCESS: "유저 계정 설정 조회 성공",
   GET_USER_SET_FAIL: "유저 계정 설정 조회 실패",
   NO_EMAIL: '존재하지 않는 이메일',
-  UNAUTHORIZED: '인증 오류',
+  UNAUTHORIZED: '인증 오류',*/
 
  /*MOMENT*/
   MOMENT_TITLE_TOO_LONG : "moment 제목 길이 초과",
@@ -84,5 +94,4 @@ module.exports = {
   UPDATE_BOOK_FAIL : "모멘트북 업데이트 실패",
   DELETE_BOOK_SUCCESS : "모멘트북 삭제 성공",
   DELETE_BOOK_FAIL : "모멘트북 삭제 실패",
-
 }

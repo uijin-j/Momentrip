@@ -12,26 +12,10 @@ module.exports = {
         momentImg,
         res
     ) => {
-        // 예외처리 조건 입력 해야됨
-        if(!momentPublic){
-            console.log('공개범위를 설정해야 합니다');
+        if( !momentTitle|| !momentContent || !momentPublic || !momentImg){
+            console.log("필요값 누락");
 
-            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
-            return;
-        }
-
-        if(momentTitle.length > 100){
-            console.log('제목 길이 초과');
-            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MOMENT_TITLE_TOO_LONG));
-
-            return;
-        }
-
-        if(momentContent.length > 300){
-            console.log('내용 길이 초과');
-            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MOMENT_CONTENT_TOO_LONG));
-
-            return;
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
 
         try{

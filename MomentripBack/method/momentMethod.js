@@ -13,11 +13,12 @@ module.exports = {
         momentImg
     ) => {
         try{
+            console.log(momentPublic);
             const moment = await Moment.create({
-                momentTitle,
-                momentContent,
-                momentPublic,
-                momentImg
+                moment_title : momentTitle,
+                moment_content : momentContent,
+                moment_img : momentImg,
+                moment_public : momentPublic,
             })
             return moment;
         }catch(err){

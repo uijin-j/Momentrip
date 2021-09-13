@@ -12,7 +12,7 @@ module.exports = class Book extends Sequelize.Model {
                 allowNull: true,
             },
             book_public: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
             book_hit: {

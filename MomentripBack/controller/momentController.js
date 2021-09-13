@@ -2,7 +2,8 @@ const momentService = require('../service/momentService');
 
 module.exports = {
     registerMoment : async (req,res) => {
-        const momentImg = req.file;
+        // const momentImg = req.file;
+        const momentImg = "MomentTest.jpg";
         const {
             momentTitle,
             momentContent,

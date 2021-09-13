@@ -128,19 +128,11 @@ module.exports = {
         momentImg,
         momentPublic,
         res) => {
-        if(!momentPublic){
-            console.log('공개범위를 설정해야 합니다');
 
-            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
-        }
-        if(momentTitle.length > 100){
-            console.log('제목 길이 초과');
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MOMENT_TITLE_TOO_LONG));
-        }
+        if( !momentTitle|| !momentContent || !momentPublic || !momentImg){
+            console.log("필요값 누락");
 
-        if(momentContent.length > 300){
-            console.log('내용 길이 초과');
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MOMENT_CONTENT_TOO_LONG));
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
 
         try {

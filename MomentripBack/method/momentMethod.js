@@ -10,15 +10,19 @@ module.exports = {
         momentTitle,
         momentContent,
         momentPublic,
-        momentImg
+        momentImg,
+        UserId,
+        BookId
     ) => {
         try{
-            console.log(momentPublic);
+            console.log(UserId, BookId);
             const moment = await Moment.create({
                 moment_title : momentTitle,
                 moment_content : momentContent,
                 moment_img : momentImg,
                 moment_public : momentPublic,
+                UserId,
+                BookId
             })
             return moment;
         }catch(err){

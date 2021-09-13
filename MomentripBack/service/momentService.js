@@ -10,6 +10,8 @@ module.exports = {
         momentContent,
         momentPublic,
         momentImg,
+        UserId,
+        BookId,
         res
     ) => {
         if( !momentTitle|| !momentContent || !momentPublic || !momentImg){
@@ -24,6 +26,8 @@ module.exports = {
                 momentContent,
                 momentPublic,
                 momentImg,
+                UserId,
+                BookId
             );
             res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.MOMENT_REGISTER_SUCCESS, moment));
 
@@ -38,7 +42,7 @@ module.exports = {
     findAll : async (res) => {
         try{
             const moments = await momentMethod.findAll();
-            res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.FIND_ALL_MOMENTS_SUCCESS));
+            res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.FIND_ALL_MOMENTS_SUCCESS, moments));
 
             return res;
         }catch(err) {
@@ -75,7 +79,6 @@ module.exports = {
     findMomentByUserId : async (user_id,res) => {
       if(!user_id){
           console.log('user_id 없음');
-
           res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
           return res;
       }
@@ -85,10 +88,9 @@ module.exports = {
           if(!moment){
               console.log('해당 user가 작성한 moment가 존재하지 않습니다.');
               res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST,responseMessage.NO_EXIST_BY_USER_ID_MOMENT));
-
               return;
           }
-          res.status(statusCode.OK).send(util.fail(statusCode.OK,responseMessage.FIND_MOMENT_BY_USER_ID_SUCCESS,moment));
+          return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.FIND_MOMENT_BY_USER_ID_SUCCESS,moment));
       }catch(err){
           console.error(err);
           res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.FIND_MOMENT_BY_USER_ID_FAIL));

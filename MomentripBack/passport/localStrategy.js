@@ -5,6 +5,7 @@ require('dotenv').config();
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
+const bcrypt = require("bcrypt");
 
 const JWTConfig = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

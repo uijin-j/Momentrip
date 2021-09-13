@@ -27,7 +27,7 @@ router.post('/signIn' ,(req, res, next) => {
 });
 
 router.post('/signUp', async (req,res,next) => {
-    const { email, password, nick, name } = req.body;
+    const { email, password, nick, name,  snsId, profile_img} = req.body;
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
@@ -39,6 +39,8 @@ router.post('/signUp', async (req,res,next) => {
             password : hash,
             nick,
             name,
+            snsId,
+            profile_img
         });
         return res.json(user);
     }catch(error){
@@ -46,35 +48,5 @@ router.post('/signUp', async (req,res,next) => {
         return next(error);
     }
 });
-
-/*router.post('/login', jwtStrategy, (req,res,next) => {
-    passport.authenticate('local', {session: false}, (authError, user, info) => {
-        if (authError) {
-            console.error(authError);
-            return next(authError);
-        }
-        if (!user) {
-            return res.redirect(`/?loginError=${info.message}`);
-        }
-        return req.login(user, {session: false}, (loginError) => {
-            if (loginError) {
-                console.error(loginError);
-                return next(loginError);
-            }
-
-            //로그인에 성공하면 jwt 발급해준다.
-            const token = jwt.sign({
-                id: User.id,
-                nick: User.nick,
-            }, process.env.JWT_SECRET);
-
-            return res.json({
-                code: 200,
-                message: '토큰이 발급되었습니다',
-                token,
-            });
-        });
-    })(req, res, next);
-})*/
 
 module.exports = router;

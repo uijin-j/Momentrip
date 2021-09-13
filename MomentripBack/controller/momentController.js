@@ -8,6 +8,8 @@ module.exports = {
             momentTitle,
             momentContent,
             momentPublic,
+            UserId,
+            BookId
         } = req.body;
 
         await momentService.register(
@@ -15,6 +17,8 @@ module.exports = {
             momentContent,
             momentPublic,
             momentImg,
+            UserId,
+            BookId,
             res);
         return res;
     },
@@ -43,7 +47,8 @@ module.exports = {
         const {
             id
         } = req.params;
-        let momentImg = req.files;
+        // let momentImg = req.files;
+        let momentImg = "update.img";
         const {
             momentTitle,
             momentContent,

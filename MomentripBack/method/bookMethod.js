@@ -58,10 +58,10 @@ module.exports ={
     ) => {
         try {
             await Book.update({
-                bookTitle,
-                bookImg,
-                bookPublic,
-                bookHit,
+                book_title : bookTitle,
+                book_img : bookImg,
+                book_public : bookPublic,
+                book_hit : bookHit,
             }, {
                 where: {
                     id
@@ -74,7 +74,7 @@ module.exports ={
     },
     delete : async (id) => {
         try {
-            const book = await Book.delete( {where : {id}});
+            const book = await Book.destroy( {where : {id}});
             return book;
         } catch (err) {
             throw err;

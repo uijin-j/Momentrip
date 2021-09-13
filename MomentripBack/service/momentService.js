@@ -8,8 +8,8 @@ module.exports = {
     register : async (
         momentTitle,
         momentContent,
-        momentImg,
         momentPublic,
+        momentImg,
         res
     ) => {
         // 예외처리 조건 입력 해야됨
@@ -38,8 +38,9 @@ module.exports = {
             const moment = await momentMethod.register(
                 momentTitle,
                 momentContent,
+                momentPublic,
                 momentImg,
-                momentPublic);
+            );
             res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.MOMENT_REGISTER_SUCCESS, moment));
 
             return;

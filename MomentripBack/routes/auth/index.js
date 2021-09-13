@@ -77,13 +77,4 @@ router.post('/signUp', async (req,res,next) => {
     })(req, res, next);
 })*/
 
-router.get('/kakao', passport.authenticate('kakao'));
-router.get('/kakao/callback', passport.authenticate('kakao', {
-    failureRedirect: '/',
-}), (req, res) => {
-    console.log("kakao login 성공");
-    console.log("get /post /auth/kakao/callback");
-    res.redirect('/');
-});
-
 module.exports = router;

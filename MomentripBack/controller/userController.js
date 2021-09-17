@@ -43,8 +43,8 @@ module.exports ={
         console.log("follower_userId : " + following_userId);
         console.log("follower_userId : " + follower_userId);
         const user = await User.update( {
-            followerId : 1,
-            followingId : 2
+            followings : following_userId,
+            followers : follower_userId
         },{where : {id : 1}})
         console.log(user);
         // const user = await User.findAll();

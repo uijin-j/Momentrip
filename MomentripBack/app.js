@@ -6,6 +6,8 @@ const logger = require('morgan');
 const passport=require('passport');
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
+
+const { swaggerUi, specs} = require('./modules/swagger');
 dotenv.config();
 
 
@@ -33,7 +35,6 @@ sequelize.sync({ force: false})
     .catch((err) => {
         console.error(err);
     });
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/momentrip', indexRouter);
 
 app.use((req, res, next) => {

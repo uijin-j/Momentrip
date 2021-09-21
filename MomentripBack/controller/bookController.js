@@ -43,13 +43,14 @@ module.exports={
         return res;
     },
     updateBookById : async (req, res) =>{
-        let bookImg = req.file;
+        // let bookImg = req.file;
+        let bookImg = "update img";
+        const { id } = req.params;
         const {
-            id,
             bookTitle,
             bookPublic,
             bookHit,
-            img,
+            img
         } = req.body;
         if (!bookImg) {
             bookImg = img;

@@ -73,18 +73,19 @@ module.exports = {
         bookPublic,
         bookHit,
         res) => {
-        if(!id || !bookTitle || !bookImg || bookPublic || bookHit || res){
+        if(!id || !bookTitle || !bookImg || !bookHit){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
             const curBook = await bookMethod.findById(id);
+            console.log("123");
             if(!curBook){
                 console.log("해당 모멘트북이 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
             const book = await bookMethod.update(id, bookTitle, bookImg, bookPublic, bookHit);
-            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, {id}));
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, book));
         }catch (err){
             console.error(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.UPDATE_BOOK_FAIL));
@@ -101,8 +102,8 @@ module.exports = {
                 console.log("해당 모멘트북이 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
-            const book = await bookMethod.delete(id);
-            return res.status(statusCode.BAD_REQUEST).send(util.success(statusCode.BAD_REQUEST, responseMessage.DELETE_ACCOUNT_SUCCESS, {id}));
+            await bookMethod.delete(id);
+            return res.status(statusCode.OK).send(util.success(statusCode.BAD_REQUEST, responseMessage.DELETE_BOOK_SUCCESS, {id}));
         }catch (err){
             console.error(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_ACCOUNT_FAIL));

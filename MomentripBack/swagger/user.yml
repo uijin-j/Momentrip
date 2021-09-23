@@ -1,0 +1,17 @@
+components:
+  schemas:
+    User:
+      type : object
+      properties :
+        id :
+          type: number
+        email :
+          type: string
+        nick :
+          type: string
+        password :
+          type: string
+        name :
+          type: string
+        profile_img :
+          type: string

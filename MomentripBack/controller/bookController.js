@@ -1,6 +1,6 @@
 const bookService = require('../service/bookService');
-
 module.exports={
+
     registerBook: async (req, res) => {
         // const bookImgFile = req.file; //원래 코드
         const bookImgFile = "Test.jpg"; //임시 코드

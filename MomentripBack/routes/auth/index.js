@@ -12,7 +12,37 @@ const {local} = require('../../passport/index')
 
 
 require('dotenv').config();
-
+/**
+ *  @swagger
+ *  tags:
+ *    name: Auth
+ *    description: API to check your authenticate.
+*/
+/**
+ *  @swagger
+ *  paths:
+ *   /momentrip/auth/signIn:
+ *     post:
+ *       summary: Check your account
+ *       tags: [Auth]
+ *       requestBody:
+ *          required: true
+ *          content:
+ *           application/json:
+ *             schema:
+ *               properties:
+ *                 email:
+ *                  type: string
+ *                 password:
+ *                  type: string
+ *       responses:
+ *         "200":
+ *           description: "Success login"
+ *         "400":
+ *           description: "Authentication Error"
+ *         "500":
+ *           description: "Fail login"
+*/
 router.post('/signIn' ,(req, res, next) => {
     passport.authenticate('signin', (err, user, info) => {
         if (!user) {
@@ -25,7 +55,27 @@ router.post('/signIn' ,(req, res, next) => {
         return res.json({ user ,token });
     })(req, res, next);
 });
-
+/**
+ *  @swagger
+ *  paths:
+ *   /momentrip/auth/signUp:
+ *     post:
+ *       summary: Check your account
+ *       tags: [Auth]
+ *       requestBody:
+ *          required: true
+ *          content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       responses:
+ *         "200":
+ *           description: "Success login"
+ *         "400":
+ *           description: "Authentication Error"
+ *         "500":
+ *           description: "Fail login"
+ */
 router.post('/signUp', async (req,res,next) => {
     const { email, password, nick, name,  snsId, profile_img} = req.body;
     try{

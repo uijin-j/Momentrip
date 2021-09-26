@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PolaActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="103dp"
+
+        android:fontFamily="@font/notosansbold"
+        android:text="혼자서도 즐거운 제주 여행"
+        android:textColor="#191919"
+        android:textSize="20dp" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:scrollbars="none">
+
+        <!-- ScrollView는 하나의 child 레이아웃 만을 가진다. -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="70dp"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/jeju_part1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp">
+
+                    <ImageView
+                        android:layout_width="280dp"
+                        android:layout_height="379.93dp"
+                        android:background="@drawable/pola_photo" />
+
+                    <ImageView
+                        android:id="@+id/jeju_pic1"
+                        android:layout_width="244dp"
+                        android:layout_height="282.5dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="19dp"
+                        android:background="@drawable/sample_picture2" />
+
+                    <LinearLayout
+                        android:id="@+id/jeju_text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="110dp"
+                        android:orientation="vertical"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="제주도 푸른 바다"
+                            android:textColor="#191919"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:layout_width="236dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansregular"
+                            android:text="사진은 평온해 보이지만 이날 바람이 진짜 많이 불었다ㅜ  그치만 저 바다색을 담았으니 만족!
+                            히히"
+                            android:textColor="#191919"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansregular"
+                            android:text="#애월 #제주바다 #행복행"
+                            android:textColor="#767676"
+                            android:textSize="12dp" />
+
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/jeju_button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="39dp"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/delete" />
+
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edit" />
+
+                    <Button
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="3dp"
+                        android:background="@android:drawable/ic_menu_close_clear_cancel"
+                        android:rotation="45" />
+                    >
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="280dp"
+                    android:layout_height="379.93dp"
+                    android:background="@drawable/pola_photo" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="120dp">
+
+                <ImageView
+                    android:layout_width="280dp"
+                    android:layout_height="379.93dp"
+                    android:background="@drawable/pola_photo" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>

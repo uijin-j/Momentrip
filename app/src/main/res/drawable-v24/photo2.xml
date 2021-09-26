@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" > <!-- Drop Shadow Stack -->
+    <!-- Drop Shadow Stack -->
+    <!-- 가장 밝은 색 부터 쌓인다 왜 쌓이냐고? 그게 layer-list여 임마 -->
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#00000029" />
+
+        </shape>
+
+    </item>
+    <!-- -->
+    <!-- 그 다음 중첩되는 item은 자신보다 위에 있는 아이템의 padding이 적용됨 -->
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#01000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#02000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#03000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#04000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp"  />
+            <corners android:radius="5dp" />
+            <solid android:color="#05000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#06000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#07000029" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:right="2dp" android:left="2dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="#08000029" />
+        </shape>
+    </item>
+
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="#EDEDED" />
+        </shape>
+    </item>
+
+</layer-list>

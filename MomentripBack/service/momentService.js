@@ -8,8 +8,8 @@ module.exports = {
     register : async (
         momentTitle,
         momentContent,
-        momentPublic,
         momentImg,
+        momentPublic,
         UserId,
         BookId,
         res
@@ -24,8 +24,8 @@ module.exports = {
             const moment = await momentMethod.register(
                 momentTitle,
                 momentContent,
-                momentPublic,
                 momentImg,
+                momentPublic,
                 UserId,
                 BookId
             );
@@ -129,14 +129,14 @@ module.exports = {
         momentPublic,
         res) => {
 
-        if( !momentTitle|| !momentContent || !momentPublic || !momentImg){
+        if( !momentTitle|| !momentContent || !momentImg || !momentPublic){
             console.log("필요값 누락");
 
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
 
         try {
-            const moment = await momentMethod.update(id,momentTitle, momentContent, momentImg,momentImg,momentPublic);
+            const moment = await momentMethod.update(id,momentTitle, momentContent, momentImg,momentPublic);
 
             res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.UPDATE_MOMENT_SUCCESS,moment));
             return;

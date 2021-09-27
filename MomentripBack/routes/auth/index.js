@@ -60,7 +60,7 @@ router.post('/signIn' ,(req, res, next) => {
  *  paths:
  *   /momentrip/auth/signUp:
  *     post:
- *       summary: Check your account
+ *       summary: Creat your account
  *       tags: [Auth]
  *       requestBody:
  *          required: true

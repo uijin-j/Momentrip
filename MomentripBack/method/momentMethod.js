@@ -9,8 +9,8 @@ module.exports = {
     register : async(
         momentTitle,
         momentContent,
-        momentPublic,
         momentImg,
+        momentPublic,
         UserId,
         BookId
     ) => {
@@ -65,24 +65,23 @@ module.exports = {
         id,
         momentTitle,
         momentContent,
+        momentImg,
         momentPublic,
-        momentImg
     ) => {
         try{
             await Moment.update({
-                momentTitle,
-                momentContent,
-                momentPublic,
-                momentImg
+                moment_title: momentTitle,
+                moment_content: momentContent,
+                moment_img: momentImg,
+                moment_public: momentPublic
             }, { where : {id}})
-            return moment;
         }catch(err){
             throw err;
         }
     },
     delete : async (id) => {
         try {
-            await Moment.delete({where:id});
+            await Moment.destroy({where:{id}});
         }catch(err){
             throw err;
         }

@@ -37,18 +37,18 @@ passport.use('jwt', new JWTStrategy(JWTConfig, JWTVerify));
 // 토큰에 담길 유저명의 key를 지정하는 옵션. 패스워드도 지정할 수 있다.
 const passportConfig = { usernameField: 'email', passwordField : 'password' };
 
-passport.use(
-    //회원가입이므로 볼 필요 x
-    'signup',
-    new localStrategy(passportConfig, async (userName, password, done) => {
-        // 유저 생성
-        // 성공하면
-        return done(null, userName);
-
-        // 실패하면
-        return done(null, false, { message: 'User creation fail.' });
-    })
-);
+// passport.use(
+//     //회원가입이므로 볼 필요 x
+//     'signup',
+//     new localStrategy(passportConfig, async (userName, password, done) => {
+//         // 유저 생성
+//         // 성공하면
+//         return done(null, userName);
+//
+//         // 실패하면
+//         return done(null, false, { message: 'User creation fail.' });
+//     })
+// );
 
 // passport.use('minusSign', localStrategy(passportConfig, async (User)));
 

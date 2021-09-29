@@ -5,20 +5,18 @@ const bookMethod = require('../method/bookMethod');
 
 module.exports = {
     register : async (
-        bookTitle,
-        bookImgFile,
-        bookPublic,
-        bookHit,
-        res
-    ) =>{
-        if( !bookTitle || !bookImgFile || !bookPublic || !bookHit){
-            console.log("bookImgFile : " + bookImgFile);
+        book_title,
+        book_img,
+        book_public,
+        book_hit,
+        UserId,
+        res) =>{
+        if( !book_title || !book_img || !book_public || !book_hit || !UserId){
             console.log("필요값 누락");
-
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(bookTitle, bookImgFile, bookPublic, bookHit);
+            const book = await bookMethod.register(book_title, book_img, book_public, book_hit, UserId);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);
@@ -68,23 +66,22 @@ module.exports = {
         }
     },
     updateBook : async (id,
-        bookTitle,
-        bookImg,
-        bookPublic,
-        bookHit,
+        book_title,
+        book_img,
+        book_public,
+        book_hit,
         res) => {
-        if(!id || !bookTitle || !bookImg || !bookHit){
+        if(!id || !book_title || !book_img || !book_hit){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
             const curBook = await bookMethod.findById(id);
-            console.log("123");
             if(!curBook){
                 console.log("해당 모멘트북이 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
-            const book = await bookMethod.update(id, bookTitle, bookImg, bookPublic, bookHit);
+            const book = await bookMethod.update(id, book_title, book_img, book_public, book_hit);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, book));
         }catch (err){
             console.error(err);

@@ -3,6 +3,22 @@ const Sequelize = require('sequelize');
 module.exports = class Book extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
+            book_img: {
+                type: Sequelize.STRING(200),
+                allowNull: true,
+            },
+            book_title: {
+                type: Sequelize.STRING(100),
+                allowNull: true,
+            },
+            book_public: {
+                type: Sequelize.BOOLEAN,
+                allowNull: true,
+            },
+            book_hit: {
+                type: Sequelize.INTEGER,
+                allowNull: true,
+            },
         }, {
             sequelize,
             timestamps: false,

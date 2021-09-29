@@ -7,19 +7,19 @@ const {
 
 module.exports ={
     register : async(
-        bookTitle,
-        bookImgFile,
-        bookPublic,
-        bookHit)=>{
+        book_title,
+        book_img,
+        book_public,
+        book_hit,
+        UserId)=>{
         try{
-            console.log("Book.create 시작!!!!!!!!!~!~!~!~!");
             const book = await Book.create({
-                book_title : bookTitle,
-                book_img: bookImgFile,
-                book_public : bookPublic,
-                book_hit : bookHit,
+                book_title,
+                book_img,
+                book_public,
+                book_hit,
+                UserId
             })
-            console.log("Book.create 성공!");
             return book;
         }catch (err){
             throw err;
@@ -51,17 +51,17 @@ module.exports ={
     },
     update: async (
         id,
-        bookTitle,
-        bookImg,
-        bookPublic,
-        bookHit,
+        book_title,
+        book_img,
+        book_public,
+        book_hit,
     ) => {
         try {
             await Book.update({
-                book_title : bookTitle,
-                book_img : bookImg,
-                book_public : bookPublic,
-                book_hit : bookHit,
+                book_title,
+                book_img,
+                book_public,
+                book_hit,
             }, {
                 where: {
                     id

@@ -37,7 +37,6 @@
         android:layout_marginStart="27dp"
         android:layout_marginLeft="27dp"
         android:layout_marginTop="19dp"
-        android:fontFamily="@font/notosansbold"
         android:text="혼자서도 즐거운 제주 여행"
         android:textColor="#191919"
         android:textSize="16dp" />

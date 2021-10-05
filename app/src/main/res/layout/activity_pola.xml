@@ -14,7 +14,6 @@
 
         android:layout_marginTop="103dp"
 
-        android:fontFamily="@font/notosansbold"
         android:text="혼자서도 즐거운 제주 여행"
         android:textColor="#191919"
         android:textSize="20dp" />
@@ -71,7 +70,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosansbold"
                             android:text="제주도 푸른 바다"
                             android:textColor="#191919"
                             android:textSize="16dp" />
@@ -79,7 +77,6 @@
                         <TextView
                             android:layout_width="236dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosansregular"
                             android:text="사진은 평온해 보이지만 이날 바람이 진짜 많이 불었다ㅜ  그치만 저 바다색을 담았으니 만족!
                             히히"
                             android:textColor="#191919"
@@ -88,7 +85,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosansregular"
                             android:text="#애월 #제주바다 #행복행"
                             android:textColor="#767676"
                             android:textSize="12dp" />

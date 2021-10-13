@@ -1,0 +1,19 @@
+components:
+  schemas:
+    Moment:
+      type : object
+      properties :
+        id :
+          type: number
+        momentTitle :
+          type: string
+        momentContent :
+          type: string
+        momentImg :
+          type: string
+        momentPublic :
+          type: boolean
+        UserId :
+          type: number
+        BookId:
+          type: number

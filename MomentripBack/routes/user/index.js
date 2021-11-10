@@ -15,6 +15,14 @@ const router = express.Router();
  *     post:
  *       summary: follow other users
  *       tags: [Follow]
+ *       requestBody:
+ *          required: true
+ *          content:
+ *           application/json:
+ *             schema:
+ *               properties:
+ *                 id:
+ *                  type: integer
  *       parameters:
  *          - in: path
  *            name: id
@@ -32,7 +40,8 @@ const router = express.Router();
  */
 router.post('/follow/:id', async(req,res,next) => {
     try{
-        const user = await User.findOne({where: {id: '2'}});
+        console.log(req.body.id);
+        const user = await User.findOne({where: {id: req.body.id}});
         if(user) {
             await user.addFollowing(parseInt(req.params.id,10));
             res.send('success');

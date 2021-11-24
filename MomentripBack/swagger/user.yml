@@ -1,17 +1,17 @@
 components:
   schemas:
-    User:
+    UserSignUp:
       type : object
       properties :
-        id :
-          type: number
         email :
           type: string
+        password:
+          type : string
         nick :
           type: string
-        password :
-          type: string
         name :
+          type: string
+        snsId :
           type: string
         profile_img :
           type: string

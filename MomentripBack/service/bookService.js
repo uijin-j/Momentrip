@@ -8,15 +8,14 @@ module.exports = {
         book_title,
         book_img,
         book_public,
-        book_hit,
         UserId,
         res) =>{
-        if( !book_title || !book_img || !book_public || !book_hit || !UserId){
+        if( !book_title || !book_img || !book_public || !UserId){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(book_title, book_img, book_public, book_hit, UserId);
+            const book = await bookMethod.register(book_title, book_img, book_public, UserId);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);
@@ -65,13 +64,25 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_BOOK_BY_USER_ID_FAIL));
         }
     },
+    searchBook : async (keyword, res) =>{
+      if(!keyword){
+          console.log("필요값누락");
+          return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.SEARCH_BOOK_FAIL))
+      }
+      try{
+          const books = await bookMethod.searchBook(keyword);
+          return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SEARCH_BOOK_SUCCESS, books));
+      }catch (err){
+          console.error(err);
+          return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SEARCH_BOOK_FAIL));
+      }
+    },
     updateBook : async (id,
         book_title,
         book_img,
         book_public,
-        book_hit,
         res) => {
-        if(!id || !book_title || !book_img || !book_hit){
+        if(!id || !book_title || !book_img){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
@@ -81,8 +92,8 @@ module.exports = {
                 console.log("해당 모멘트북이 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
-            const book = await bookMethod.update(id, book_title, book_img, book_public, book_hit);
-            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, book));
+            const book = await bookMethod.update(id, book_title, book_img, book_public);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, {id}));
         }catch (err){
             console.error(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.UPDATE_BOOK_FAIL));
@@ -100,7 +111,7 @@ module.exports = {
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
             }
             await bookMethod.delete(id);
-            return res.status(statusCode.OK).send(util.success(statusCode.BAD_REQUEST, responseMessage.DELETE_BOOK_SUCCESS, {id}));
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.DELETE_BOOK_SUCCESS, {id}));
         }catch (err){
             console.error(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_ACCOUNT_FAIL));

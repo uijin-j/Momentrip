@@ -1,17 +1,24 @@
 components:
   schemas:
-    Book:
+    BookPost:
       type: object
       properties:
-        id:
+        book_title:
+          type: string
+        UserId:
           type: number
+          minimum: 1
+        book_public:
+          type: boolean
         book_img:
           type: string
+
+    BookUpdate:
+      type: object
+      properties:
         book_title:
           type: string
         book_public:
           type: boolean
-        book_hit:
-          type: number
-        UserId:
-          type: number
+        book_img:
+          type: string

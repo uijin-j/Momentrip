@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../../models/user');
+const userController = require('../../controller/userController');
 
 const router = express.Router();
 /**
@@ -78,5 +79,10 @@ router.post('/unfollow/:id', async(req,res,next) => {
         console.error(error);
     }
 });
+
+
+router.get('/select/:email', userController.findUserByEmail)
+
+
 
 module.exports = router;

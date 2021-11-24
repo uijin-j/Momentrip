@@ -10,14 +10,12 @@ module.exports ={
         book_title,
         book_img,
         book_public,
-        book_hit,
         UserId)=>{
         try{
             const book = await Book.create({
                 book_title,
                 book_img,
                 book_public,
-                book_hit,
                 UserId
             })
             return book;
@@ -41,7 +39,7 @@ module.exports ={
             throw err;
         }
     },
-    findByUserId : async (user_id) =>{
+    findByUserId : async (UserId) =>{
         try {
             const books = await Book.findAll({where : {UserId}});
             return books;
@@ -49,25 +47,31 @@ module.exports ={
             throw err;
         }
     },
+    searchBook : async (keyword) => {
+      try{
+          const books = Book.findAll({where : {book_title : {[Op.like] : "%" + keyword + "%"}}})
+          return books;
+      }catch (err){
+          throw err;
+      }
+    },
     update: async (
         id,
         book_title,
         book_img,
         book_public,
-        book_hit,
     ) => {
         try {
-            await Book.update({
+            const book = await Book.update({
                 book_title,
                 book_img,
                 book_public,
-                book_hit,
             }, {
                 where: {
                     id
                 }
             });
-
+            return book;
         } catch (err) {
             throw err;
         }

@@ -30,6 +30,23 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_USER_BY_USER_ID_FAIL);
         }
     },
+    findUserByEmail : async (user_email, res) =>{
+        if(!user_email){
+            console.log("필요값누락");
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.FIND_USER_BY_USER_EMAIL_FAIL));
+        }
+        try{
+            const user = await userMethod.findUserByEmail(user_email);
+            if(!user){
+                console.log("해당 유저가 존재하지 않습니다");
+                return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.FIND_USER_BY_USER_EMAIL_FAIL));
+            }
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_USER_BY_USER_EMAIL_SUCCESS, user));
+        }catch (err){
+            console.error(err);
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).send(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_USER_BY_USER_EMAIL_FAIL);
+        }
+    },
     updateUser : async (id,
         email,
         nick,

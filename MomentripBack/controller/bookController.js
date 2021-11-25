@@ -18,7 +18,6 @@ module.exports={
     },
     findAllBook : async (req, res) =>{
         await bookService.findAll(res);
-
         return res;
     },
     findBookById : async (req, res)=>{

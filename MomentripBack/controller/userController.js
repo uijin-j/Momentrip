@@ -12,12 +12,13 @@ module.exports ={
         return res;
     },
     findUserByEmail : async (req, res) => {
-        const {user_email} = req.params;
-        await userService.findUserByEmail(user_email, res);
+        const {email} = req.params;
+        await userService.findUserByEmail(email, res);
         return res;
     },
     updateUser : async (req, res) => {
-        let profile_img = req.file;
+        // let profile_img = req.file;
+        let profile_img = "example img";
         const {user_id} = req.params;
         const {email,
             nick,

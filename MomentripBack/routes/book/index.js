@@ -5,7 +5,7 @@ const bookController = require('../../controller/bookController');
  *  @swagger
  *  tags:
  *    name: Book
- *    description: API to check your Book.
+ *    description: API to check Book.
  */
 /**
  * @swagger

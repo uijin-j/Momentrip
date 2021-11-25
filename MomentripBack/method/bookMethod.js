@@ -25,7 +25,7 @@ module.exports ={
     },
     findById : async (id)=>{
         try{
-            const book = Book.findOne({ where : { id }});
+            const book = await Book.findOne({ where : { id }});
             return book;
         }catch (err){
             throw err;
@@ -33,7 +33,7 @@ module.exports ={
     },
     findAll : async () => {
         try{
-            const books = Book.findAll();
+            const books = await Book.findAll();
             return books;
         }catch (err){
             throw err;
@@ -49,7 +49,7 @@ module.exports ={
     },
     searchBook : async (keyword) => {
       try{
-          const books = Book.findAll({where : {book_title : {[Op.like] : "%" + keyword + "%"}}})
+          const books = await Book.findAll({where : {book_title : {[Op.like] : "%" + keyword + "%"}}})
           return books;
       }catch (err){
           throw err;
@@ -78,8 +78,7 @@ module.exports ={
     },
     delete : async (id) => {
         try {
-            const book = await Book.destroy( {where : {id}});
-            return book;
+            await Book.destroy( {where : {id}});
         } catch (err) {
             throw err;
         }

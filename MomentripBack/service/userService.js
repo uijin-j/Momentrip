@@ -83,7 +83,7 @@ module.exports = {
                 console.log("해당 사용자 정보 없음");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.DELETE_USER_FAIL));
             }
-            const user = userMethod.deleteUser(user_id);
+            const user = await userMethod.delete(user_id);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.DELETE_USER_SUCCESS, user));
         }catch (err){
             console.error(err);

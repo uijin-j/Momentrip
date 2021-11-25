@@ -1,6 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const util = require('../../modules/util');
+const statusCode = require('../../modules/statusCode');
+const responseMessage = require('../../modules/responseMessage');
 const User = require('../../models/user');
 
 const router = express.Router();
@@ -38,10 +41,6 @@ require('dotenv').config();
  *       responses:
  *         "200":
  *           description: "Success login"
- *         "400":
- *           description: "Authentication Error"
- *         "500":
- *           description: "Fail login"
 */
 router.post('/signIn' ,(req, res, next) => {
     passport.authenticate('signin', (err, user, info) => {
@@ -67,21 +66,17 @@ router.post('/signIn' ,(req, res, next) => {
  *          content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: '#/components/schemas/UserSignUp'
  *       responses:
  *         "200":
  *           description: "Success login"
- *         "400":
- *           description: "Authentication Error"
- *         "500":
- *           description: "Fail login"
  */
 router.post('/signUp', async (req,res,next) => {
     const { email, password, nick, name,  snsId, profile_img} = req.body;
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
-            return res.status(400).json({error:[{message: '이미 존재하는 회원입니다.'}]});
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_EMAIL));
         }
         const hash = await bcrypt.hash(password,12);
         let user = await User.create({
@@ -92,10 +87,10 @@ router.post('/signUp', async (req,res,next) => {
             snsId,
             profile_img
         });
-        return res.json(user);
+        return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SIGN_UP_SUCCESS, user));
     }catch(error){
         console.error(error);
-        return next(error);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SIGN_UP_FAIL));
     }
 });
 

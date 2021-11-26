@@ -17,7 +17,7 @@ module.exports = class Book extends Sequelize.Model {
             },
             book_hit: {
                 type: Sequelize.INTEGER,
-                allowNull: true,
+                defaultValue : 0,
             },
         }, {
             sequelize,

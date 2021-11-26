@@ -18,8 +18,6 @@ const JWTVerify = async (jwtPayload, done) => {
         jwtPayload
         // jwtPayload에 유저 정보가 담겨있다.
         // 해당 정보로 유저 식별 로직을 거친다.
-
-
         // 유효한 유저라면
         if (user) {
             done(null, user);

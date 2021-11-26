@@ -1,0 +1,32 @@
+components:
+  parameters:
+    queryId:
+      name: id
+      in : path
+      required: true
+      schema :
+        type : integer
+    queryUserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    queryBookId:
+      name: book_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    queryKeyword:
+      name: keyword
+      in: path
+      required: true
+      schema:
+        type: string
+    queryEmail:
+      name: email
+      in: path
+      required: true
+      schema:
+        type: string

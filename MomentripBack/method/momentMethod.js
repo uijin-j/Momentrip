@@ -75,6 +75,7 @@ module.exports = {
                 moment_img: momentImg,
                 moment_public: momentPublic
             }, { where : {id}})
+            return id;
         }catch(err){
             throw err;
         }

@@ -1,8 +1,14 @@
 const bookService = require('../service/bookService');
 module.exports={
     registerBook: async (req, res) => {
-        // const bookImgFile = req.file; //원래 코드
-        const book_img = "Test.jpg"; //임시 코드
+        const book_img = req.file.key; //이미지 하나 올리기 코드
+/*
+        /!* singleImage의 경우 req.file에서 파싱! *!/
+        const book_img = req.files;
+        /!* 이미지의 경로들을 path에 배열로 저장시킴 *!/
+        const path = book_img.map(img => img.path);
+        // const book_img = "Test.jpg"; //임시 코드
+*/
         const {
             book_title,
             book_public,

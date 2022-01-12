@@ -11,8 +11,10 @@ components:
         book_public:
           type: boolean
         book_img:
-          type: string
-
+          type: file
+#          schema:
+#            type: file
+#            format: binary
     BookUpdate:
       type: object
       properties:

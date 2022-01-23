@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bookController = require('../../controller/bookController');
 const upload = require('../../modules/multer');
+const authCheck = require('../../middleware/authCheck');
 
 /**
  *  @swagger
@@ -23,6 +24,8 @@ const upload = require('../../modules/multer');
  *            multipart/json:
  *              schema :
  *                  $ref: '#/components/schemas/BookPost'
+ *      security:
+ *          - bearerAuth: []
  *      responses:
  *        200:
  *              description: Success
@@ -50,7 +53,7 @@ router.get('/', bookController.findAllBook) //book 모두 불러오기
  *        200:
  *              description: Success
  */
-router.get('/select/:id', bookController.findBookById) // 특정 book 불러오기
+router.get('/select/:id',bookController.findBookById) // 특정 book 불러오기
 /**
  * @swagger
  * paths:
@@ -93,6 +96,8 @@ router.get('/search/:keyword', bookController.searchBook)
  *            application/json:
  *              schema:
  *                  $ref: '#/components/schemas/BookUpdate'
+ *      security:
+ *          - bearerAuth: []
  *      parameters:
  *          - $ref : '#/components/parameters/queryId'
  *      responses:
@@ -109,6 +114,8 @@ router.patch('/:id', bookController.updateBookById) // 특정 book 업데이트
  *     tags: [Book]
  *     parameters:
  *      - $ref : '#/components/parameters/queryId'
+ *     security:
+ *      - bearerAuth: []
  *     responses:
  *          "200":
  *              description: Success

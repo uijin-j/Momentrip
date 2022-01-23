@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Category extends Sequelize.Model {
+module.exports = class TourRegion extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            category_value: {
+            tour_region: {
                 type: Sequelize.STRING(20),
                 allowNull: true,
             },
@@ -12,15 +12,14 @@ module.exports = class Category extends Sequelize.Model {
             timestamps: false,
             paranoid: false,
             underscored: false,
-            modelName: 'Category',
-            tableName: 'category',
+            modelName: 'TourRegion',
+            tableName: 'tourRegion',
             charset: 'utf8',
             collate: 'utf8_general_ci',
         });
     }
 
     static associate(db) {
-        db.Category.belongsTo(db.User);
-        db.Category.belongsTo(db.Book);
+        db.TourRegion.hasMany(db.Book);
     }
 };

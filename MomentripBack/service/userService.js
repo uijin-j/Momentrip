@@ -49,13 +49,12 @@ module.exports = {
     },
     updateUser : async (id,
         email,
-        nick,
         password,
         name,
         snsId,
         profile_img,
         res) => {
-        if(!id || !email || !nick || !password ||!name ||!snsId || !profile_img){
+        if(!id || !email || !password ||!name ||!snsId || !profile_img){
             console.log("필요값누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_USER_FAIL));
         }
@@ -65,7 +64,7 @@ module.exports = {
                 console.log("해당 유저 정보 없음");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_USER_FAIL));
             }
-            const user = await userMethod.updateUser(id, email, nick, password, name, snsId, profile_img);
+            const user = await userMethod.updateUser(id, email, password, name, snsId, profile_img);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_USER_SUCCESS, user));
         }catch (err){
             console.error(err);

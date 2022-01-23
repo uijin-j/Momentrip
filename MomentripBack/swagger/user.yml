@@ -7,8 +7,6 @@ components:
           type: string
         password:
           type : string
-        nick :
-          type: string
         name :
           type: string
         snsId :
@@ -23,8 +21,6 @@ components:
           type: string
         password:
           type : string
-        nick :
-          type: string
         name :
           type: string
         snsId :

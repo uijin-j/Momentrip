@@ -33,6 +33,7 @@ module.exports = {
   UPDATE_USER_SUCCESS : "사용자 정보 수정 성공",
   DELETE_USER_SUCCESS : "사용자 삭제 성공",
   DELETE_USER_FAIL : "사용자 삭제 실패",
+  UNAUTHORIZED: "사용자 인증 실패",
 
  /*MOMENT*/
   MOMENT_TITLE_TOO_LONG : "moment 제목 길이 초과",
@@ -70,4 +71,8 @@ module.exports = {
   DELETE_BOOK_FAIL : "모멘트북 삭제 실패",
   SEARCH_BOOK_SUCCESS : "모멘트북 검색 성공",
   SEARCH_BOOK_FAIL : "모멘트북 검색 실패",
+
+  /* HASHTAG */
+  HASHTAG_REGISTER_SUCCESS : "해시태그 등록 성공",
+  HASHTAG_REGISTER_FAIL : "해시태그 등록 실패"
 }

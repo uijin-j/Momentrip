@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const momentController = require('../../controller/momentController');
+const authCheck = require('../../middleware/authCheck');
 
 /**
  *  @swagger
@@ -22,6 +23,8 @@ const momentController = require('../../controller/momentController');
  *              application/json:
  *                  schema:
  *                      $ref: '#/components/schemas/MomentPost'
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *              description: "Success"
@@ -32,8 +35,8 @@ const momentController = require('../../controller/momentController');
  *         "200":
  *           description: "Success"
  */
-router.post('/', momentController.registerMoment); // moment 만들기
-router.get('/', momentController.findAllMoment); //moment 모두 불러오기
+router.post('/', authCheck.isLoggedIn,momentController.registerMoment); // moment 만들기
+router.get('/', authCheck.isLoggedIn, momentController.findAllMoment); //moment 모두 불러오기
 /**
  *  @swagger
  *  paths:
@@ -47,7 +50,7 @@ router.get('/', momentController.findAllMoment); //moment 모두 불러오기
  *         "200":
  *           description: "Success"
  */
-router.get('/select/:id', momentController.findMomentById); // 특정 moment 불러오기
+router.get('/select/:id', authCheck.isLoggedIn, momentController.findMomentById); // 특정 moment 불러오기
 /**
  *  @swagger
  *  paths:
@@ -61,7 +64,7 @@ router.get('/select/:id', momentController.findMomentById); // 특정 moment 불
  *         "200":
  *           description: "Success"
  */
-router.get('/user/:user_id',momentController.findMomentByUserId); //특정 유저의 moment 보기
+router.get('/user/:user_id',authCheck.isLoggedIn,momentController.findMomentByUserId); //특정 유저의 moment 보기
 /**
  *  @swagger
  *  paths:
@@ -75,7 +78,7 @@ router.get('/user/:user_id',momentController.findMomentByUserId); //특정 유�
  *         "200":
  *           description: "Success"
  */
-router.get('/book/:book_id',momentController.findAllMomentByOneBook); // 특정 book에 속하는 moments 불러오기
+router.get('/book/:book_id',authCheck.isLoggedIn,momentController.findAllMomentByOneBook); // 특정 book에 속하는 moments 불러오기
 /**
  *  @swagger
  *  paths:
@@ -91,11 +94,13 @@ router.get('/book/:book_id',momentController.findAllMomentByOneBook); // 특정 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/MomentUpdate'
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
  */
-router.patch('/:id', momentController.updateMomentById); // 특정 moment 업데이트
+router.patch('/:id', authCheck.isLoggedIn,momentController.updateMomentById); // 특정 moment 업데이트
 /**
  *  @swagger
  *  paths:
@@ -105,11 +110,13 @@ router.patch('/:id', momentController.updateMomentById); // 특정 moment 업데
  *       tags: [Moment]
  *       parameters:
  *          - $ref : '#/components/parameters/queryId'
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
  */
-router.delete('/:id', momentController.deleteMomentById);// 특정 moment 삭제
+router.delete('/:id', authCheck.isLoggedIn,momentController.deleteMomentById);// 특정 moment 삭제
 
 
 module.exports = router;

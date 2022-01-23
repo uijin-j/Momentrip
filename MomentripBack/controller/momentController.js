@@ -1,5 +1,5 @@
 const momentService = require('../service/momentService');
-
+const hashtagService = require('../service/hashtagService');
 module.exports = {
     registerMoment : async (req,res) => {
         // const momentImg = req.file;
@@ -12,7 +12,7 @@ module.exports = {
             BookId
         } = req.body;
 
-        await momentService.register(
+        const moment = await momentService.register(
             momentTitle,
             momentContent,
             momentImg,
@@ -20,6 +20,18 @@ module.exports = {
             UserId,
             BookId,
             res);
+
+        const hashtags = req.body.momentContent.match(/#[^s#]*/g); // 해시태그 추출
+        if(hashtags){ //해시태그가 있으면
+            const result = await Promise.all(
+                hashtags.map(tag => {
+                     return hashtagService.register({ // 해시태그 생성
+                        hashtag_title:tag.slice(1).toLowerCase(), // 앞에 # 떼고 소문자로 변환
+                    })
+                }),
+            );
+            //await moment.addHashtags(result.map(r=>r[0]));
+        }
         return res;
     },
     findAllMoment : async (req,res) => {

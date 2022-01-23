@@ -16,6 +16,14 @@ const router = express.Router();
  *     post:
  *       summary: follow other users
  *       tags: [Follow]
+ *       requestBody:
+ *          required: true
+ *          content:
+ *           application/json:
+ *             schema:
+ *               properties:
+ *                 id:
+ *                  type: integer
  *       parameters:
  *          - in: path
  *            name: id
@@ -23,6 +31,8 @@ const router = express.Router();
  *              type: integer
  *            required: true
  *            description: Numeric ID of the following user
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
@@ -33,7 +43,8 @@ const router = express.Router();
  */
 router.post('/follow/:id', async(req,res,next) => {
     try{
-        const user = await User.findOne({where: {id: '2'}});
+        console.log(req.body.id);
+        const user = await User.findOne({where: {id: req.body.id}});
         if(user) {
             await user.addFollowing(parseInt(req.params.id,10));
             res.send('success');
@@ -59,6 +70,8 @@ router.post('/follow/:id', async(req,res,next) => {
  *              type: integer
  *            required: true
  *            description: Numeric ID of the unfollowing user
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
@@ -105,6 +118,8 @@ router.get('/', userController.findAll);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryUserId'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -119,6 +134,8 @@ router.get('/select/id/:user_id', userController.findUserById);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryEmail'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -140,6 +157,8 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *                  application/json:
  *                      schema:
  *                          $ref: '#/components/schemas/UserUpdate'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -154,6 +173,8 @@ router.patch('/:user_id' , userController.updateUser);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryUserId'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success

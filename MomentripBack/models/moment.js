@@ -21,7 +21,7 @@ module.exports = class Moment extends Sequelize.Model {
             }
         }, {
             sequelize,
-            timestamps: false,
+            timestamps: true,
             paranoid: false,
             underscored: false,
             modelName: 'Moment',

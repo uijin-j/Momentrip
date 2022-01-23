@@ -7,15 +7,15 @@ module.exports = class User extends Sequelize.Model {
                 type: Sequelize.STRING(45),
                 allowNull: false,
             },
-            nick: {
-                type: Sequelize.STRING(45),
-                allowNull: false,
-            },
             password: {
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
             name: {
+                type: Sequelize.STRING(45),
+                allowNull: false,
+            },
+            snsId: {
                 type: Sequelize.STRING(45),
                 allowNull: false,
             },
@@ -38,7 +38,7 @@ module.exports = class User extends Sequelize.Model {
     static associate(db) {
         db.User.hasMany(db.Moment);
         db.User.hasMany(db.Book);
-
+        db.User.hasMany(db.Category);
         db.User.belongsToMany(db.User, {
             foreignKey: 'followingId',
             as: 'Followers',

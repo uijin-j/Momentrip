@@ -21,7 +21,6 @@ module.exports ={
         let profile_img = "example img";
         const {user_id} = req.params;
         const {email,
-            nick,
             password,
             name,
             snsId,
@@ -31,7 +30,6 @@ module.exports ={
         }
         await userService.updateUser(user_id,
             email,
-            nick,
             password,
             name,
             snsId,

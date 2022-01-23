@@ -31,6 +31,8 @@ const router = express.Router();
  *              type: integer
  *            required: true
  *            description: Numeric ID of the following user
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
@@ -68,6 +70,8 @@ router.post('/follow/:id', async(req,res,next) => {
  *              type: integer
  *            required: true
  *            description: Numeric ID of the unfollowing user
+ *       security:
+ *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
@@ -114,6 +118,8 @@ router.get('/', userController.findAll);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryUserId'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -128,6 +134,8 @@ router.get('/select/id/:user_id', userController.findUserById);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryEmail'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -149,6 +157,8 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *                  application/json:
  *                      schema:
  *                          $ref: '#/components/schemas/UserUpdate'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success
@@ -163,6 +173,8 @@ router.patch('/:user_id' , userController.updateUser);
  *          tags: [User]
  *          parameters:
  *              - $ref : '#/components/parameters/queryUserId'
+ *          security:
+ *              - bearerAuth: []
  *          responses:
  *              200:
  *                  description: Success

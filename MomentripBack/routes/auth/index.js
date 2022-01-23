@@ -72,7 +72,7 @@ router.post('/signIn' ,(req, res, next) => {
  *           description: "Success login"
  */
 router.post('/signUp', async (req,res,next) => {
-    const { email, password, nick, name,  snsId, profile_img} = req.body;
+    const { email, password, name,  snsId, profile_img} = req.body;
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
@@ -82,7 +82,6 @@ router.post('/signUp', async (req,res,next) => {
         let user = await User.create({
             email,
             password : hash,
-            nick,
             name,
             snsId,
             profile_img

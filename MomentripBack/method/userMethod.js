@@ -53,5 +53,12 @@ module.exports ={
         }catch (err){
             throw err;
         }
+    },
+    following : async (followingUser, followed_id) => {
+        try{
+            await followingUser.addFollowing(parseInt(followed_id,10));
+        }catch (err){
+            throw err;
+        }
     }
 }

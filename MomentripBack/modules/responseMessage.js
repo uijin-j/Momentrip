@@ -33,6 +33,8 @@ module.exports = {
   UPDATE_USER_SUCCESS : "사용자 정보 수정 성공",
   DELETE_USER_SUCCESS : "사용자 삭제 성공",
   DELETE_USER_FAIL : "사용자 삭제 실패",
+  FOLLOW_USER_SUCCESS : "사용자  팔로우 삭제",
+  FOLLOW_USER_FAIL : "사용자 팔로우 실패",
   UNAUTHORIZED: "사용자 인증 실패",
 
  /*MOMENT*/
@@ -74,5 +76,15 @@ module.exports = {
 
   /* HASHTAG */
   HASHTAG_REGISTER_SUCCESS : "해시태그 등록 성공",
-  HASHTAG_REGISTER_FAIL : "해시태그 등록 실패"
+  HASHTAG_REGISTER_FAIL : "해시태그 등록 실패",
+
+  /* CATEGORY */
+  REGISTER_CATEGORY_SUCCESS : "카테고리 등록 성공",
+  REGISTER_CATEGORY_FAIL : "카테고리 등록 실패",
+  FIND_CATEGORY_BY_USER_ID_SUCCESS : "특정 유저 카테고리 조회 성공",
+  FIND_CATEGORY_BY_USER_ID_FAIL : "특정 유저 카테고리 조회 실패",
+  UPDATE_Category_SUCCESS : "카테고리 업데이트 성공",
+  UPDATE_Category_FAIL : "카테고리 업데이트 실패",
+  DELETE_Category_SUCCESS : "카테고리 삭제 성공",
+  DELETE_Category_FAIL : "카테고리 삭제 실패",
 }

@@ -43,15 +43,10 @@ module.exports ={
         return res;
     },
     followUser : async (req, res)=> {
-        const {following_userId, follower_userId} = req.body;
-        console.log("follower_userId : " + following_userId);
-        console.log("follower_userId : " + follower_userId);
-        const user = await User.update( {
-            followings : following_userId,
-            followers : follower_userId
-        },{where : {id : 1}})
-        console.log(user);
-        // const user = await User.findAll();
-        return res.status(200).send(require('../modules/util').success(200, "success", user));
+        const following_id = req.body;
+        const followed_id = req.params.id;
+        // user.addFollowing(parseInt(req.params.id,10));
+        await userService.followUser(following_id, followed_id, res);
+        return res;
     }
 }

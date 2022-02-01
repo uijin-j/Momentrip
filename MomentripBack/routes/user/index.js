@@ -41,21 +41,8 @@ const router = express.Router();
  *         "500":
  *           description: "Fail"
  */
-router.post('/follow/:id', async(req,res,next) => {
-    try{
-        console.log(req.body.id);
-        const user = await User.findOne({where: {id: req.body.id}});
-        if(user) {
-            await user.addFollowing(parseInt(req.params.id,10));
-            res.send('success');
-        }else{
-            res.status(404).send('No user');
-        }
-    }catch(error) {
-        console.error(error);
-        next(error);
-    }
-});
+router.post('/follow/:id', userController.followUser);
+// router.post('/follow/:id', async(req,res,next) => {);
 /**
  *  @swagger
  *  paths:

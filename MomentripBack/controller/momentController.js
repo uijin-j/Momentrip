@@ -21,7 +21,7 @@ module.exports = {
             BookId,
             res);
 
-        const hashtags = req.body.momentContent.match(/#[^s#]*/g); // 해시태그 추출
+        const hashtags = momentContent.match(/#[^s#]*/g); // 해시태그 추출
         if(hashtags){ //해시태그가 있으면
             const result = await Promise.all(
                 hashtags.map(tag => {
@@ -36,7 +36,6 @@ module.exports = {
     },
     findAllMoment : async (req,res) => {
         await momentService.findAll(res);
-
         return res;
     },
     findMomentById : async (req,res) => {

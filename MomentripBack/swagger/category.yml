@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CategoryPost:
+      type: object
+      properties:
+        category_value:
+          type: string
+        UserId:
+          type: number
+          minimum: 1
+    CategoryUpdate:
+      type: object
+      properties:
+        category_value:
+          type: string

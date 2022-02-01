@@ -5,6 +5,8 @@ const util = require('../../modules/util');
 const statusCode = require('../../modules/statusCode');
 const responseMessage = require('../../modules/responseMessage');
 const User = require('../../models/user');
+const Category = require('../../models/category')
+const Book = require('../../models/book')
 
 const router = express.Router();
 
@@ -86,6 +88,7 @@ router.post('/signUp', async (req,res,next) => {
             snsId,
             profile_img
         });
+
         return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SIGN_UP_SUCCESS, user));
     }catch(error){
         console.error(error);

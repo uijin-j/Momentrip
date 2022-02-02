@@ -21,6 +21,6 @@ module.exports = class Category extends Sequelize.Model {
 
     static associate(db) {
         db.Category.belongsTo(db.User);
-        db.Category.belongsTo(db.Book);
+        db.Category.hasMany(db.Book);
     }
 };

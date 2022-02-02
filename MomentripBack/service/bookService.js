@@ -14,7 +14,7 @@ module.exports = {
         book_hit,
         UserId,
         res) =>{
-        if( !book_title || !book_img || !book_public || !UserId){
+        if( !book_title || !book_img || !UserId){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }

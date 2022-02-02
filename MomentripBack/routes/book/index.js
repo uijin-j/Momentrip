@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bookController = require('../../controller/bookController');
+const upload = require('../../modules/multer');
 const authCheck = require('../../middleware/authCheck');
 
 /**
@@ -20,8 +21,8 @@ const authCheck = require('../../middleware/authCheck');
  *          required: true
  *          description: book_hit 0 이상으로 , 존재하는 유저Id로 넣기
  *          content:
- *            application/json:
- *              schema:
+ *            multipart/json:
+ *              schema :
  *                  $ref: '#/components/schemas/BookPost'
  *      security:
  *          - bearerAuth: []
@@ -35,7 +36,9 @@ const authCheck = require('../../middleware/authCheck');
  *        200:
  *              description: Success
  */
-router.post('/', bookController.registerBook); // book 만들기
+router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
+// router.post('/', upload.array('book_img', 2), bookController.registerBook); // book 만들기  (image 여러개 올리기)
+
 router.get('/', bookController.findAllBook) //book 모두 불러오기
 /**
  * @swagger

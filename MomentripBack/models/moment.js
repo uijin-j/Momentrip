@@ -32,7 +32,6 @@ module.exports = class Moment extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Moment.belongsTo(db.User);
         db.Moment.belongsTo(db.Book);
         db.Moment.belongsToMany(db.Hashtag, { through: 'MomentHashtag' });
     }

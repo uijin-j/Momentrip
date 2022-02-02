@@ -1,5 +1,6 @@
 const {
-    User
+    User,
+    Follow
 } = require('../models');
 const {
     Op
@@ -19,6 +20,14 @@ module.exports ={
             const user = await User.findOne({where : { id }})
             return user;
         }catch (err){
+            throw err;
+        }
+    },
+    findFollowingById : async (followerId) => {
+        try {
+            const following = await Follow.findOne({where:{followerId}})
+            return following;
+        }catch(err){
             throw err;
         }
     },

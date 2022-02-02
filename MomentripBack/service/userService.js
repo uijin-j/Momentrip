@@ -30,6 +30,22 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_USER_BY_USER_ID_FAIL);
         }
     },
+    findFollowingById : async (user_id,res) => {
+        if(!user_id){
+            console.log("필요값누락");
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.FIND_USER_BY_USER_EMAIL_FAIL));
+        }
+        try{
+            const following_id = await userMethod.findFollowingById(user_id);
+            if(!following_id){
+                console.log("해당 유저가 팔로잉한 사람이 아닙니다.");
+            }
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_FOLLOWING_BY_ID_SUCCESS, following_id));
+        }catch(err){
+            console.error(err);
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).send(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_USER_BY_USER_EMAIL_FAIL);
+        }
+    },
     findUserByEmail : async (user_email, res) =>{
         if(!user_email){
             console.log("필요값누락");

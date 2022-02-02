@@ -5,13 +5,19 @@ module.exports={
         const book_img = "Test.jpg"; //임시 코드
         const {
             book_title,
+            trip_start_date,
+            trip_end_date,
             book_public,
+            book_hit,
             UserId,
         } = req.body;
         await bookService.register(
             book_title,
+            trip_start_date,
+            trip_end_date,
             book_img,
             book_public,
+            book_hit,
             UserId,
             res);
         return res;
@@ -30,6 +36,14 @@ module.exports={
             user_id
         } = req.params;
         await bookService.findBookByUserId(user_id,res);
+
+        return res;
+    },
+    searchBookByFollowingId : async (req,res) => {
+        const {
+            user_id,
+        } = req.params;
+        await bookService.findBookByFollowingId(user_id, res);
 
         return res;
     },

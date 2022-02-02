@@ -10,9 +10,14 @@ components:
           minimum: 1
         book_public:
           type: boolean
+        book_hit:
+          type: int
         book_img:
           type: string
-
+        trip_start_date:
+          type: string
+        trip_end_date:
+          type: string
     BookUpdate:
       type: object
       properties:
@@ -21,4 +26,8 @@ components:
         book_public:
           type: boolean
         book_img:
+          type: string
+        trip_start_date:
+          type: string
+        trip_end_date:
           type: string

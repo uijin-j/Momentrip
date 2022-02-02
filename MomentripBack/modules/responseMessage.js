@@ -27,6 +27,7 @@ module.exports = {
   FIND_USER_ALL_SUCCESS : "전체 사용자 조회 성공",
   FIND_USER_BY_USER_ID_SUCCESS : "특정 사용자 유저아이디 조회 성공",
   FIND_USER_BY_USER_ID_FAIL : "특정 사용자 유저아이디 조회 실패",
+  FIND_FOLLOWING_BY_ID_SUCCESS : "특정 사용자가 팔로우한 유저 아이디 조회 성공",
   FIND_USER_BY_USER_EMAIL_FAIL : "특정 사용자 유저이메일 조회 실패",
   FIND_USER_BY_USER_EMAIL_SUCCESS : "특정 사용자 유저이메일 조회 성공",
   UPDATE_USER_FAIL : "사용자 정보 수정 실패",

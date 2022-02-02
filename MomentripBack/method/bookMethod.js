@@ -8,15 +8,21 @@ const {
 module.exports ={
     register : async(
         book_title,
+        trip_start_date,
+        trip_end_date,
         book_img,
         book_public,
-        UserId)=>{
+        book_hit,
+        UserId,
+        )=>{
         try{
             const book = await Book.create({
                 book_title,
+                trip_start_date,
+                trip_end_date,
                 book_img,
                 book_public,
-                UserId
+                UserId,
             })
             return book;
         }catch (err){
@@ -55,17 +61,22 @@ module.exports ={
           throw err;
       }
     },
+
     update: async (
         id,
         book_title,
         book_img,
         book_public,
+        trip_start_date,
+        trip_end_date,
     ) => {
         try {
             const book = await Book.update({
                 book_title,
                 book_img,
                 book_public,
+                trip_start_date,
+                trip_end_date,
             }, {
                 where: {
                     id

@@ -11,6 +11,11 @@ module.exports ={
         await userService.findUserById(user_id, res);
         return res;
     },
+    findFollowingById : async (req,res) => {
+        const {user_id} = req.params;
+        await userService.findFollowingById(user_id,res);
+        return res;
+    },
     findUserByEmail : async (req, res) => {
         const {email} = req.params;
         await userService.findUserByEmail(email, res);

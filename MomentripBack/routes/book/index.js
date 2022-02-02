@@ -65,6 +65,7 @@ router.get('/select/:id',bookController.findBookById) // 특정 book 불러오�
  *              description: Success
  */
 router.get('/user/:user_id', bookController.searchBookByUserId) //특정 유저의 book 보기
+router.get('/user/:user_id/:follow_id', bookController.searchBookByFollowingId) //특정 유저가 팔로잉하는 유저의 book 보기
 /**
  * @swagger
  * paths:

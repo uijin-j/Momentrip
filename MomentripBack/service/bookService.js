@@ -12,14 +12,17 @@ module.exports = {
         book_img,
         book_public,
         book_hit,
-        UserId,
+        tour_style,
+        CategoryId,
+        TourRegionId,
         res) =>{
-        if( !book_title || !book_img || !UserId){
+        if( !book_title || !book_img){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit, UserId);
+            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit,tour_region,tour_style,CategoryId,TourRegionId);
+            console.log(book);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);

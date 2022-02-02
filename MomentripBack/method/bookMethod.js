@@ -13,7 +13,8 @@ module.exports ={
         book_img,
         book_public,
         book_hit,
-        UserId,
+        CategoryId,
+        TourRegionId,
         )=>{
         try{
             book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
@@ -23,7 +24,8 @@ module.exports ={
                 trip_end_date,
                 book_img,
                 book_public,
-                UserId,
+                CategoryId,
+                TourRegionId,
             })
             return book;
         }catch (err){

@@ -1,4 +1,5 @@
 const bookService = require('../service/bookService');
+const tourStyleService = require('../service/tourStyleService');
 module.exports={
     registerBook: async (req, res) => {
         const book_img = req.file.key; //이미지 하나 올리기 코드
@@ -15,7 +16,9 @@ module.exports={
             trip_end_date,
             book_public,
             book_hit,
-            UserId,
+            CategoryId,
+            tour_style,
+            TourRegionId,
         } = req.body;
         await bookService.register(
             book_title,
@@ -24,8 +27,19 @@ module.exports={
             book_img,
             book_public,
             book_hit,
-            UserId,
+            CategoryId,
+            TourRegionId,
             res);
+
+        if(tour_style){//선택한 여행 스타일이 있으면
+            /*await Promise.all(
+                tour_style.map(tag => {
+                    return tourStyleService.register({
+                        tour_style: tag.split(',')
+                    })
+                }),
+            );*/
+        }
         return res;
     },
     findAllBook : async (req, res) =>{

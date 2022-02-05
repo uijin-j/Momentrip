@@ -1,15 +1,14 @@
 /*
+const util = require("../modules/util")
+const statusCode = require("../modules/statusCode");
+const responseMessage = require('../modules/responseMessage');
 const tourStyleMethod = require('../method/tourStyleMethod');
 
 module.exports = {
-    register: async (
-        tourStyle
-    ) => {
+    findByTourStyle: async (tourStyles) => {
         try {
-            const tour_style = await tourStyleMethod.register(
-                tourStyle
-            );
-            //res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.HASHTAG_REGISTER_SUCCESS, hashtag));
+            const tour_style = await tourStyleMethod.findByTourStyle(tourStyles);
+            //res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.TourStyle_REGISTER_SUCCESS, tour_style));
             return tour_style;
         } catch (err) {
             console.error(err);

@@ -74,6 +74,7 @@ module.exports = {
   DELETE_BOOK_FAIL : "모멘트북 삭제 실패",
   SEARCH_BOOK_SUCCESS : "모멘트북 검색 성공",
   SEARCH_BOOK_FAIL : "모멘트북 검색 실패",
+  TourStyle_REGISTER_SUCCESS :"여행 스타일 성공",
 
   /* HASHTAG */
   HASHTAG_REGISTER_SUCCESS : "해시태그 등록 성공",

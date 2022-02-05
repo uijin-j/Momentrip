@@ -12,7 +12,6 @@ module.exports = {
         book_img,
         book_public,
         book_hit,
-        tour_style,
         CategoryId,
         TourRegionId,
         res) =>{
@@ -21,7 +20,7 @@ module.exports = {
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit,tour_region,tour_style,CategoryId,TourRegionId);
+            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit, CategoryId,TourRegionId);
             console.log(book);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){

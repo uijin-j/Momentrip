@@ -30,16 +30,11 @@ module.exports={
             CategoryId,
             TourRegionId,
             res);
-
-        if(tour_style){//선택한 여행 스타일이 있으면
-            /*await Promise.all(
-                tour_style.map(tag => {
-                    return tourStyleService.register({
-                        tour_style: tag.split(',')
-                    })
-                }),
-            );*/
-        }
+        /*if(tour_style){//선택한 여행 스타일이 있으면
+            const tourStyles = tour_style.split(',');
+            console.log(tourStyles);
+            await tourStyleService.findByTourStyle(tourStyles);
+        }*/
         return res;
     },
     findAllBook : async (req, res) =>{

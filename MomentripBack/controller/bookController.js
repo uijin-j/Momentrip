@@ -28,6 +28,7 @@ module.exports={
             book_public,
             book_hit,
             CategoryId,
+            tour_style,
             TourRegionId,
             res);
         /*if(tour_style){//선택한 여행 스타일이 있으면

@@ -1,7 +1,18 @@
 const Category = require('../models/category');
-const {Op} = require("sequelize");
+// const {Op} = require("sequelize");
 
 module.exports = {
+    defaultRegister : (user_id)=> {
+        try {
+            const category = Category.create({
+                category_value : "noValue",
+                UserId : user_id,
+            })
+            return category;
+        }catch (err) {
+            throw err;
+        }
+    },
     register : async (category_value, UserId) => {
         try{
             const category = await Category.create({

@@ -13,6 +13,7 @@ module.exports = {
         book_public,
         book_hit,
         CategoryId,
+        tour_style,
         TourRegionId,
         res) =>{
         if( !book_title || !book_img){
@@ -20,8 +21,7 @@ module.exports = {
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
-            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit, CategoryId,TourRegionId);
-            console.log(book);
+            const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit, CategoryId, tour_style,TourRegionId);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);

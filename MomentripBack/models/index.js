@@ -38,4 +38,6 @@ Category.associate(db);
 TourRegion.associate(db);
 TourStyle.associate(db);
 
+db.BookTourStyle = db.sequelize.models.BookTourStyle;
+
 module.exports = db;

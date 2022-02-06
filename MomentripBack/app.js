@@ -27,7 +27,7 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
-//sequelize.sync({ force: true})
+// sequelize.sync({ force: true})
 //force:false 하면 재생성 x -> 따로 디비 생성안해도 됨
 sequelize.sync({ force: false })
     .then(() => {

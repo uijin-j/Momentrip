@@ -5,8 +5,8 @@ const util = require('../../modules/util');
 const statusCode = require('../../modules/statusCode');
 const responseMessage = require('../../modules/responseMessage');
 const User = require('../../models/user');
-const Category = require('../../models/category')
-const Book = require('../../models/book')
+const categoryMethod = require('../../method/categoryMethod')
+const bookMethod = require('../../method/bookMethod')
 
 const router = express.Router();
 
@@ -88,6 +88,8 @@ router.post('/signUp', async (req,res,next) => {
             snsId,
             profile_img
         });
+        const defaultCategory = await categoryMethod.defaultRegister(user.id);
+        const defaultBook = await bookMethod.defaultRegister(defaultCategory.id);
 
         return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SIGN_UP_SUCCESS, user));
     }catch(error){
@@ -95,5 +97,27 @@ router.post('/signUp', async (req,res,next) => {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SIGN_UP_FAIL));
     }
 });
+
+
+
+/*
+router.get('/bookmark', findUser, async (req, res, next) => {
+    try {
+        const bookmarkPosts = await req.findUser.getBookmarkPosts({
+            order: [[db.Sequelize.literal('PostBookmark.createdAt'), 'DESC']],
+            include: [
+                {
+                    model: db.Image,
+                    limits: 1,
+                },
+            ],
+        });
+        res.status(200).json(bookmarkPosts);
+    } catch (e) {
+        console.error(e);
+        next(e);
+    }
+});
+*/
 
 module.exports = router;

@@ -39,5 +39,6 @@ TourRegion.associate(db);
 TourStyle.associate(db);
 
 db.BookTourStyle = db.sequelize.models.BookTourStyle;
+db.Follow = db.sequelize.models.Follow;
 
 module.exports = db;

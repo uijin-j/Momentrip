@@ -3,13 +3,6 @@ const tourStyleService = require('../service/tourStyleService');
 module.exports={
     registerBook: async (req, res) => {
         const book_img = req.file.key; //이미지 하나 올리기 코드
-/*
-        /!* singleImage의 경우 req.file에서 파싱! *!/
-        const book_img = req.files;
-        /!* 이미지의 경로들을 path에 배열로 저장시킴 *!/
-        const path = book_img.map(img => img.path);
-        // const book_img = "Test.jpg"; //임시 코드
-*/
         const {
             book_title,
             trip_start_date,
@@ -31,11 +24,6 @@ module.exports={
             tour_style,
             TourRegionId,
             res);
-        /*if(tour_style){//선택한 여행 스타일이 있으면
-            const tourStyles = tour_style.split(',');
-            console.log(tourStyles);
-            await tourStyleService.findByTourStyle(tourStyles);
-        }*/
         return res;
     },
     findAllBook : async (req, res) =>{
@@ -47,22 +35,22 @@ module.exports={
         await bookService.findBookById(id, res);
         return res;
     },
-    searchBookByUserId : async (req, res) =>{
+    findBookByCategoryId : async (req, res) =>{
         const {
-            user_id
+            category_id
         } = req.params;
-        await bookService.findBookByUserId(user_id,res);
+        await bookService.findBookByCategoryId(category_id,res);
 
         return res;
     },
-    searchBookByFollowingId : async (req,res) => {
+    /*findBookByFollowingId : async (req,res) => {
         const {
             user_id,
         } = req.params;
         await bookService.findBookByFollowingId(user_id, res);
 
         return res;
-    },
+    },*/
     searchBook : async (req, res) =>{
         const{
             keyword

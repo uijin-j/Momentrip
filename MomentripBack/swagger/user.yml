@@ -13,7 +13,6 @@ components:
           type: string
         profile_img :
           type: string
-
     UserUpdate :
       type : object
       properties :
@@ -26,4 +25,17 @@ components:
         snsId :
           type: string
         profile_img :
+          type: string
+    UserFollowing:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+         type: string
+        name:
+          type: string
+        snsId:
+          type: string
+        profile_img:
           type: string

@@ -59,14 +59,6 @@ module.exports ={
             throw err;
         }
     },
-    findById : async (id)=>{
-        try{
-            const book = await Book.findOne({ where : { id }});
-            return book;
-        }catch (err){
-            throw err;
-        }
-    },
     findAll : async () => {
         try{
             const books = await Book.findAll();
@@ -75,14 +67,25 @@ module.exports ={
             throw err;
         }
     },
-    findByUserId : async (UserId) =>{
+    findById : async (id)=>{
+        try{
+            const book = await Book.findOne({ where : { id }});
+            return book;
+        }catch (err){
+            throw err;
+        }
+    },
+    findByCategoryId : async (CategoryId) =>{
         try {
-            const books = await Book.findAll({where : {UserId}});
+            const books = await Book.findAll({where : {CategoryId}});
             return books;
         }catch (err){
             throw err;
         }
     },
+    /*findByUserId : async (following_id) => {
+
+    },*/
     searchBook : async (keyword) => {
       try{
           const books = await Book.findAll({where : {book_title : {[Op.like] : "%" + keyword + "%"}}})
@@ -91,7 +94,6 @@ module.exports ={
           throw err;
       }
     },
-
     update: async (
         id,
         book_title,

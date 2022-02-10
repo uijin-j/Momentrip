@@ -57,18 +57,18 @@ router.get('/select/:id',bookController.findBookById) // 특정 book 불러오�
 /**
  * @swagger
  * paths:
- *  /momentrip/book/user/{user_id}:
+ *  /momentrip/book/user/{category_id}:
  *    get:
- *     summary: Check book by user_id
+ *     summary: Check book by category id
  *     tags: [Book]
  *     parameters:
- *      - $ref : '#/components/parameters/queryUserId'
+ *      - $ref : '#/components/parameters/queryCategoryId'
  *     responses:
  *          "200":
  *              description: Success
  */
-router.get('/user/:user_id', bookController.searchBookByUserId) //특정 유저의 book 보기
-router.get('/user/:user_id/:follow_id', bookController.searchBookByFollowingId) //특정 유저가 팔로잉하는 유저의 book 보기
+router.get('/user/:category_id', bookController.findBookByCategoryId) //특정 카테고리의 book 보기
+// router.get('/user/:user_id/:follow_id', bookController.findBookByFollowingId) //특정 유저가 팔로잉하는 유저의 book 보기
 /**
  * @swagger
  * paths:

@@ -13,22 +13,22 @@ components:
 #            type: file
 #            format: binary
         book_hit:
-          type: int
+          type: number
         trip_start_date:
           type: string
         trip_end_date:
           type: string
         tour_region:
           in: query
-          type: string
-          enum: ["제주도","강원도","서울","부산","여수","전주","대구"]
-          description: "여행 지역을 선택해주세요"
+          type: number
+#          enum: ["제주도","강원도","서울","부산","여수","전주","대구"]
+#          description: "여행 지역을 선택해주세요"
           required: false
         tour_style:
           in: query
           type: string
-          enum: ["힐링","액티비티","럭셔리","먹방","나홀로여행","우정여행","커플여행","당일치기","한달살기"]
-          description: "여행 스타일을 선택해주세요"
+#          enum: ["힐링","액티비티","럭셔리","먹방","나홀로여행","우정여행","커플여행","당일치기","한달살기"]
+          description: "띄어쓰기 없이 숫자 배열로 보내주세요, 만약에 숫자 배열로 바로 보낼 수 있으면 말해주세요! ex) 1,2,3,5"
           required: false
         UserId:
           type: number
@@ -42,3 +42,16 @@ components:
           type: boolean
         book_img:
           type: string
+        trip_start_date:
+          type: string
+        trip_end_date:
+          type: string
+        tour_region:
+          in: query
+          type: number
+          required: false
+        tour_style:
+          in: query
+          type: string
+          description: "띄어쓰기 없이 숫자 배열로 보내주세요, 만약에 숫자 배열로 바로 보낼 수 있으면 말해주세요! ex) 1,2,3,5"
+          required: false

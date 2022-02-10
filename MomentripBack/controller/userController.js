@@ -1,5 +1,9 @@
 const userService = require('../service/userService');
-const User = require('../models/user');
+const {
+    User,
+    Follow
+} = require('../models');
+
 
 module.exports ={
     findAll : async (req, res) => {
@@ -11,14 +15,14 @@ module.exports ={
         await userService.findUserById(user_id, res);
         return res;
     },
-    findFollowingById : async (req,res) => {
-        const {user_id} = req.params;
-        await userService.findFollowingById(user_id,res);
-        return res;
-    },
     findUserByEmail : async (req, res) => {
         const {email} = req.params;
         await userService.findUserByEmail(email, res);
+        return res;
+    },
+    findFollowingById : async (req,res) => {
+        const {user_id} = req.params;
+        await userService.findFollowingById(user_id,res);
         return res;
     },
     updateUser : async (req, res) => {
@@ -48,10 +52,25 @@ module.exports ={
         return res;
     },
     followUser : async (req, res)=> {
-        const following_id = req.body;
-        const followed_id = req.params.id;
-        // user.addFollowing(parseInt(req.params.id,10));
-        await userService.followUser(following_id, followed_id, res);
+        const {follower_id} = req.params;
+        const {following_id} = req.body;
+        await userService.followUser(follower_id, following_id, res);
+        return res;
+    },
+    unfollowUser : async (req, res) => {
+        const {follower_id} = req.params;
+        const {following_id} = req.body;
+        await userService.unfollowUser(follower_id, following_id, res);
+        return res;
+    },
+    countUserFollow : async (req, res)=> {
+        const {user_id} = req.params;
+        await userService.countUserFollow(user_id, res);
+        return res;
+    },
+    findUserFollow : async (req, res) => {
+        const {user_id} = req.params;
+        await userService.findUserFollow(user_id, res);
         return res;
     }
 }

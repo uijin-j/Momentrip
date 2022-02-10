@@ -8,7 +8,7 @@ const Category = require('./category');
 const Hashtag = require('./hashtag');
 const Moment = require('./moment');
 const TourRegion = require('./tourRegion');
-const TourStyle = require('./TourStyle');
+const TourStyle = require('./tourStyle');
 
 const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, config);

@@ -37,7 +37,7 @@ const authCheck = require('../../middleware/authCheck');
  *              description: Success
  */
 router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
-// router.post('/', upload.array('book_img', 2), bookController.registerBook); // book 만들기  (image 여러개 올리기)
+// router.post('/', authCheck.isLoggedIn, upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
 
 router.get('/', bookController.findAllBook) //book 모두 불러오기
 /**
@@ -94,7 +94,7 @@ router.get('/search/:keyword', bookController.searchBook)
  *          required: true
  *          description: update book
  *          content:
- *            application/json:
+ *            multipart/json:
  *              schema:
  *                  $ref: '#/components/schemas/BookUpdate'
  *      security:
@@ -105,7 +105,7 @@ router.get('/search/:keyword', bookController.searchBook)
  *          "200":
  *              description: Success
  */
-router.patch('/:id', bookController.updateBookById) // 특정 book 업데이트
+router.patch('/:id', upload.single('book_img'), bookController.updateBookById) // 특정 book 업데이트
 /**
  * @swagger
  * paths:

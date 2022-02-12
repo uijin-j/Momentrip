@@ -20,11 +20,11 @@ module.exports = class Book extends Sequelize.Model {
                 defaultValue : 0,
             },
             trip_start_date: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(100),
                 allowNull: true,
             },
             trip_end_date: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(100),
                 allowNull: true,
             }
         }, {

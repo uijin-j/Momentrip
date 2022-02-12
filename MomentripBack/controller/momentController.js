@@ -2,22 +2,18 @@ const momentService = require('../service/momentService');
 const hashtagService = require('../service/hashtagService');
 module.exports = {
     registerMoment : async (req,res) => {
-        // const momentImg = req.file;
-        const momentImg = "MomentTest.jpg";
+        const momentImg = req.file.key;
         const {
             momentTitle,
             momentContent,
             momentPublic,
-            UserId,
             BookId
         } = req.body;
-
-        const moment = await momentService.register(
+        await momentService.register(
             momentTitle,
             momentContent,
             momentImg,
             momentPublic,
-            UserId,
             BookId,
             res);
 
@@ -43,32 +39,25 @@ module.exports = {
         await momentService.findMomentById(id,res);
         return res;
     },
-    findMomentByUserId : async (req, res)=> {
+    findUserIndividualMoment : async (req, res)=> {
         const {user_id} = req.params;
-        await momentService.findMomentByUserId(user_id, res);
+        await momentService.findUserIndividualMoment(user_id, res);
         return res;
     },
-    findAllMomentByOneBook : async (req,res) => {
+    findMomentByBook : async (req,res) => {
         const { book_id } = req.params;
-        await momentService.findByOneBook(book_id,res);
+        await momentService.findMomentByBook(book_id,res);
 
         return res;
     },
     updateMomentById : async (req,res) => {
-        const {
-            id
-        } = req.params;
-        // let momentImg = req.files;
-        let momentImg = "update.img";
+        const { id } = req.params;
+        const momentImg = req.file.key;
         const {
             momentTitle,
             momentContent,
-            defaultImg,
             momentPublic,
         } = req.body;
-        if(!momentImg){
-            momentImg = defaultImg;
-        }
         await momentService.updateMoment(
             id,
             momentTitle,

@@ -21,6 +21,7 @@ module.exports = {
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
         try{
+            console.log("start!!!!")
             const book = await bookMethod.register(book_title, trip_start_date, trip_end_date, book_img, book_public, book_hit, CategoryId, tour_style,TourRegionId);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
@@ -104,8 +105,10 @@ module.exports = {
         book_public,
         trip_start_date,
         trip_end_date,
+        tour_style,
+        TourRegionId,
         res) => {
-        if(!id || !book_title || !book_img ){
+        if(!id || !book_title || !book_img || !book_public || !trip_end_date || ! trip_start_date || !tour_style || !TourRegionId){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
@@ -113,10 +116,10 @@ module.exports = {
             const curBook = await bookMethod.findById(id);
             if(!curBook){
                 console.log("해당 모멘트북이 존재하지 않습니다.");
-                return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.UPDATE_BOOK_FAIL));
+                return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.OUT_OF_VALUE));
             }
-            const book = await bookMethod.update(id, book_title, book_img, book_public, trip_start_date, trip_end_date);
-            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, {id}));
+            const book = await bookMethod.update(id, book_title, book_img, book_public, trip_start_date, trip_end_date, tour_style, TourRegionId,);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_BOOK_SUCCESS, book));
         }catch (err){
             console.error(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.UPDATE_BOOK_FAIL));

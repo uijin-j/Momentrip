@@ -1,5 +1,4 @@
 const bookService = require('../service/bookService');
-const tourStyleService = require('../service/tourStyleService');
 module.exports={
     registerBook: async (req, res) => {
         const book_img = req.file.key; //이미지 하나 올리기 코드
@@ -13,6 +12,7 @@ module.exports={
             tour_style,
             TourRegionId,
         } = req.body;
+        console.log(book_title);
         await bookService.register(
             book_title,
             trip_start_date,
@@ -59,22 +59,25 @@ module.exports={
         return res;
     },
     updateBookById : async (req, res) =>{
-        // let book_img = req.file;
-        let book_img = "update img";
+        const book_img = req.file.key; //이미지 하나 올리기 코드
         const { id } = req.params;
         const {
             book_title,
-            img,
             book_public,
+            trip_start_date,
+            trip_end_date,
+            tour_style,
+            TourRegionId,
         } = req.body;
-        if (!book_img) {
-            book_img = img;         //img는 프론트에서 주는 기본 이미지
-        }
         await bookService.updateBook(
             id,
             book_title,
             book_img,
             book_public,
+            trip_start_date,
+            trip_end_date,
+            tour_style,
+            TourRegionId,
             res)
         return res;
     },

@@ -1,5 +1,5 @@
 const {
-    Moment
+    Moment, Category, Book
 } = require('../models');
 const {
     Op
@@ -11,17 +11,14 @@ module.exports = {
         momentContent,
         momentImg,
         momentPublic,
-        UserId,
         BookId
     ) => {
         try{
-            console.log(UserId, BookId);
             const moment = await Moment.create({
                 moment_title : momentTitle,
                 moment_content : momentContent,
                 moment_img : momentImg,
                 moment_public : momentPublic,
-                UserId,
                 BookId
             })
             return moment;
@@ -45,15 +42,20 @@ module.exports = {
             throw err;
         }
     },
-    findByUserId : async (UserId)  => {
+    findUserIndividualMoment : async (user_id)  => {
         try{
-            const moment = Moment.findOne({where : {UserId}});
-            return moment;
+            console.log(user_id);
+            const defaultCategory = await Category.findOne({where : {
+                [Op.and] : [{UserId : user_id},{category_value : "momentrip_default_Category"}]
+                }})
+            const defaultBook = await Book.findOne({where : {CategoryId : defaultCategory.id}});
+            const moments = await Moment.findAll({where : {BookId : defaultBook.id}});
+            return moments;
         }catch(err){
             throw err;
         }
     },
-    findByOneBook : async (BookId) => {
+    findMomentByBook : async (BookId) => {
         try {
             const moment = Moment.findAll({where: {BookId}});
             return moment;

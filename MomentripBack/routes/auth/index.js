@@ -12,6 +12,7 @@ const router = express.Router();
 
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const upload = require('../../modules/multer');
 const jwtStrategy = require('../../passport/jwtStrategy');
 const {local} = require('../../passport/index')
 
@@ -66,15 +67,17 @@ router.post('/signIn' ,(req, res, next) => {
  *       requestBody:
  *          required: true
  *          content:
- *           application/json:
+ *           multipart/json:
  *             schema:
  *               $ref: '#/components/schemas/UserSignUp'
  *       responses:
  *         "200":
  *           description: "Success login"
  */
-router.post('/signUp', async (req,res,next) => {
-    const { email, password, name,  snsId, profile_img} = req.body;
+router.post('/signUp', upload.single('profile_img'), async (req,res,next) => {
+    const profile_img = req.file.key; //이미지 하나 올리기 코드
+    const { email, password, name,  snsId} = req.body;
+
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
@@ -97,27 +100,5 @@ router.post('/signUp', async (req,res,next) => {
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SIGN_UP_FAIL));
     }
 });
-
-
-
-/*
-router.get('/bookmark', findUser, async (req, res, next) => {
-    try {
-        const bookmarkPosts = await req.findUser.getBookmarkPosts({
-            order: [[db.Sequelize.literal('PostBookmark.createdAt'), 'DESC']],
-            include: [
-                {
-                    model: db.Image,
-                    limits: 1,
-                },
-            ],
-        });
-        res.status(200).json(bookmarkPosts);
-    } catch (e) {
-        console.error(e);
-        next(e);
-    }
-});
-*/
 
 module.exports = router;

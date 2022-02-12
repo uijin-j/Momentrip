@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const momentController = require('../../controller/momentController');
+const upload = require('../../modules/multer');
 const authCheck = require('../../middleware/authCheck');
 
 /**
@@ -20,7 +21,7 @@ const authCheck = require('../../middleware/authCheck');
  *          required: true
  *          description: Create moment
  *          content:
- *              application/json:
+ *              multipart/json:
  *                  schema:
  *                      $ref: '#/components/schemas/MomentPost'
  *       security:
@@ -35,8 +36,9 @@ const authCheck = require('../../middleware/authCheck');
  *         "200":
  *           description: "Success"
  */
-router.post('/', authCheck.isLoggedIn,momentController.registerMoment); // moment 만들기
-router.get('/', authCheck.isLoggedIn, momentController.findAllMoment); //moment 모두 불러오기
+// router.post('/', authCheck.isLoggedIn, upload.single('momentImg'), momentController.registerMoment); // moment 만들기
+router.post('/', upload.single('momentImg'), momentController.registerMoment); // moment 만들기
+router.get('/', momentController.findAllMoment); //moment 모두 불러오기
 /**
  *  @swagger
  *  paths:
@@ -50,13 +52,13 @@ router.get('/', authCheck.isLoggedIn, momentController.findAllMoment); //moment 
  *         "200":
  *           description: "Success"
  */
-router.get('/select/:id', authCheck.isLoggedIn, momentController.findMomentById); // 특정 moment 불러오기
+router.get('/select/:id', momentController.findMomentById); // 특정 moment 불러오기
 /**
  *  @swagger
  *  paths:
  *   /momentrip/moment/user/{user_id}:
  *     get:
- *       summary: Check user's moment
+ *       summary: Check user's individual moment (북에 포함 안된)
  *       tags: [Moment]
  *       parameters:
  *          - $ref : '#/components/parameters/queryUserId'
@@ -64,7 +66,7 @@ router.get('/select/:id', authCheck.isLoggedIn, momentController.findMomentById)
  *         "200":
  *           description: "Success"
  */
-router.get('/user/:user_id',authCheck.isLoggedIn,momentController.findMomentByUserId); //특정 유저의 moment 보기
+router.get('/user/:user_id', momentController.findUserIndividualMoment);//유저의 북에 들어가있지 않는 moment 보기
 /**
  *  @swagger
  *  paths:
@@ -78,7 +80,7 @@ router.get('/user/:user_id',authCheck.isLoggedIn,momentController.findMomentByUs
  *         "200":
  *           description: "Success"
  */
-router.get('/book/:book_id',authCheck.isLoggedIn,momentController.findAllMomentByOneBook); // 특정 book에 속하는 moments 불러오기
+router.get('/book/:book_id',momentController.findMomentByBook); // 특정 book에 속하는 moments 불러오기
 /**
  *  @swagger
  *  paths:
@@ -91,7 +93,7 @@ router.get('/book/:book_id',authCheck.isLoggedIn,momentController.findAllMomentB
  *       requestBody:
  *          required: true
  *          content:
- *           application/json:
+ *           multipart/json:
  *             schema:
  *               $ref: '#/components/schemas/MomentUpdate'
  *       security:
@@ -100,7 +102,7 @@ router.get('/book/:book_id',authCheck.isLoggedIn,momentController.findAllMomentB
  *         "200":
  *           description: "Success"
  */
-router.patch('/:id', authCheck.isLoggedIn,momentController.updateMomentById); // 특정 moment 업데이트
+router.patch('/:id', authCheck.isLoggedIn, upload.single('momentImg'), momentController.updateMomentById); // 특정 moment 업데이트
 /**
  *  @swagger
  *  paths:
@@ -116,7 +118,7 @@ router.patch('/:id', authCheck.isLoggedIn,momentController.updateMomentById); //
  *         "200":
  *           description: "Success"
  */
-router.delete('/:id', authCheck.isLoggedIn,momentController.deleteMomentById);// 특정 moment 삭제
+router.delete('/:id', authCheck.isLoggedIn, momentController.deleteMomentById);// 특정 moment 삭제
 
 
 module.exports = router;

@@ -18,21 +18,15 @@ components:
           type: string
         trip_end_date:
           type: string
-        tour_region:
-          in: query
+        TourRegionId:
           type: number
-#          enum: ["제주도","강원도","서울","부산","여수","전주","대구"]
-#          description: "여행 지역을 선택해주세요"
           required: false
+        CategoryId:
+          type: number
         tour_style:
-          in: query
           type: string
-#          enum: ["힐링","액티비티","럭셔리","먹방","나홀로여행","우정여행","커플여행","당일치기","한달살기"]
-          description: "띄어쓰기 없이 숫자 배열로 보내주세요, 만약에 숫자 배열로 바로 보낼 수 있으면 말해주세요! ex) 1,2,3,5"
+          description: "띄어쓰기 없이 숫자 text로 보내주세요 ex) 1,2,3,5  -> text말고 int 배열로 바로 보낼 수 있으면 단톡방에 말해주세요!"
           required: false
-        UserId:
-          type: number
-          minimum: 1
     BookUpdate:
       type: object
       properties:
@@ -41,17 +35,17 @@ components:
         book_public:
           type: boolean
         book_img:
-          type: string
+          type: file
         trip_start_date:
           type: string
         trip_end_date:
           type: string
-        tour_region:
+        TourRegionId:
           in: query
           type: number
           required: false
         tour_style:
           in: query
           type: string
-          description: "띄어쓰기 없이 숫자 배열로 보내주세요, 만약에 숫자 배열로 바로 보낼 수 있으면 말해주세요! ex) 1,2,3,5"
+          description: "띄어쓰기 없이 숫자 text로 보내주세요 ex) 1,2,3,5  -> text말고 int 배열로 바로 보낼 수 있으면 단톡방에 말해주세요! "
           required: false

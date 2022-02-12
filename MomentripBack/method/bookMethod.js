@@ -10,7 +10,7 @@ module.exports ={
     defaultRegister : async (CategoryId)=>{
         try{
             const book = await Book.create({
-                book_title : "noTitle",
+                book_title : "momentrip_default_Book",
                 book_img : "noImage",
                 book_public : true,
                 book_hit : 0,
@@ -26,10 +26,10 @@ module.exports ={
     },
     register : async(
         book_title,
-        trip_start_date,
-        trip_end_date,
         book_img,
         book_public,
+        trip_start_date,
+        trip_end_date,
         book_hit,
         CategoryId,
         tour_style,
@@ -101,19 +101,31 @@ module.exports ={
         book_public,
         trip_start_date,
         trip_end_date,
+        tour_style,
+        TourRegionId,
     ) => {
         try {
+            book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
             const book = await Book.update({
                 book_title,
                 book_img,
                 book_public,
                 trip_start_date,
                 trip_end_date,
-            }, {
-                where: {
-                    id
-                }
-            });
+                TourRegionId,
+            }, {where: { id }});
+            const tourStyle = tour_style.split(",");
+            BookTourStyle.destroy({
+                where : {BookId : id},
+                truncate : true,
+            })
+            for(const property in tourStyle){
+                await BookTourStyle.create({
+                    BookId : id,
+                    TourStyleId : tourStyle[property]
+                })
+            }
+            console.log("2")
             return book;
         } catch (err) {
             throw err;

@@ -5,7 +5,7 @@ module.exports = {
     defaultRegister : (user_id)=> {
         try {
             const category = Category.create({
-                category_value : "noValue",
+                category_value : "momentrip_default_Category",
                 UserId : user_id,
             })
             return category;

@@ -26,17 +26,12 @@ module.exports ={
         return res;
     },
     updateUser : async (req, res) => {
-        // let profile_img = req.file;
-        let profile_img = "example img";
+        let profile_img = req.file.key;
         const {user_id} = req.params;
         const {email,
             password,
             name,
-            snsId,
-            img} = req.body;
-        if(!profile_img){
-            profile_img = img;
-        }
+            snsId} = req.body;
         await userService.updateUser(user_id,
             email,
             password,

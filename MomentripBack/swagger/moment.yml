@@ -8,16 +8,12 @@ components:
         momentContent :
           type: string
         momentImg :
-          type: string
+          type: file
         momentPublic :
           type: boolean
-        UserId :
-          type: number
-          minimum: 1
         BookId:
           type: number
           minimum: 1
-
     MomentUpdate:
       type: object
       properties:
@@ -26,6 +22,6 @@ components:
         momentContent:
           type: string
         momentImg:
-          type: string
+          type: file
         momentPublic:
           type: boolean

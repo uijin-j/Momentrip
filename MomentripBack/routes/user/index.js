@@ -38,7 +38,7 @@ router.get('/', userController.findAll);
  *              200:
  *                  description: Success
  */
-//특정 유저 정보 조회하기
+//id로 특정 유저 정보 조회하기
 router.get('/select/id/:user_id', userController.findUserById);
 /**
  * @swagger
@@ -70,7 +70,7 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *              required: true
  *              description: 유저 업데이트 하기
  *              content:
- *                  application/json:
+ *                  multipart/json:
  *                      schema:
  *                          $ref: '#/components/schemas/UserUpdate'
  *          security:
@@ -79,8 +79,6 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *              200:
  *                  description: Success
  */
-//followers, following 수 조회하기
-router.get('/:user_id/follow/count', );
 //user_id 로 유저 정보 업데이트하기
 router.patch('/:user_id' , userController.updateUser);
 /**

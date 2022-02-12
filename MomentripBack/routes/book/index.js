@@ -36,8 +36,8 @@ const authCheck = require('../../middleware/authCheck');
  *        200:
  *              description: Success
  */
-router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
-// router.post('/', authCheck.isLoggedIn, upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
+// router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
+router.post('/', authCheck.isLoggedIn, upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
 
 router.get('/', bookController.findAllBook) //book 모두 불러오기
 /**
@@ -76,13 +76,18 @@ router.get('/user/:category_id', bookController.findBookByCategoryId) //특정 �
  *    get:
  *     summary: Search book by keyword
  *     tags: [Book]
- *     parameters:
- *      - $ref : '#/components/parameters/queryKeyword'
+ *     requestBody:
+ *          required: true
+ *          description: 필터(tour style, tour region)는 book에만 적용   /    keyword는 book title에, moment의 태그에 적용
+ *          content:
+ *            application/json:
+ *              schema :
+ *                  $ref: '#/components/schemas/BookSearch'
  *     responses:
  *          "200":
  *              description: Success
  */
-router.get('/search/:keyword', bookController.searchBook)
+router.get('/search', bookController.searchBook)
 /**
  * @swagger
  * paths:

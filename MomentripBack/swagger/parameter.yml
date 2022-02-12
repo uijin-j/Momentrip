@@ -24,12 +24,6 @@ components:
       required: true
       schema:
         type: integer
-    queryKeyword:
-      name: keyword
-      in: path
-      required: true
-      schema:
-        type: string
     queryEmail:
       name: email
       in: path

@@ -6,7 +6,7 @@ const {
     Op
 } = require("sequelize");
 
-module.exports ={
+module.exports = {
     defaultRegister : async (CategoryId)=>{
         try{
             const book = await Book.create({
@@ -34,7 +34,7 @@ module.exports ={
         CategoryId,
         tour_style,
         TourRegionId,
-        )=>{
+    )=>{
         try{
             book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
             const book = await Book.create({
@@ -86,13 +86,32 @@ module.exports ={
     /*findByUserId : async (following_id) => {
 
     },*/
-    searchBook : async (keyword) => {
-      try{
-          const books = await Book.findAll({where : {book_title : {[Op.like] : "%" + keyword + "%"}}})
-          return books;
-      }catch (err){
-          throw err;
-      }
+    searchBook : async (tour_style, TourRegionId, keyword) => {
+        try{
+            const region_keyword_books = await Book.findAll(
+                {where : {[Op.and] : [
+                        {book_title : {[Op.like] : "%" + keyword + "%"}},
+                        {TourRegionId}]
+                }
+            });// region 필터링, keyword 검색 결과된 books
+            const tourStyle = tour_style.split(",");
+            const bookId = await BookTourStyle.findAll({
+                where: { TourStyleId : tourStyle },
+                attributes: ['BookId']})
+            //tourStyle 필터링된 book id 들
+            const set = new Set;
+            for(const property in bookId) set.add(bookId[property].BookId);
+            const tourStyle_books = Array.from(set)
+            //tourStyle 필터링, 중복 제거된 book id 들
+            const resultBooks = []
+            for (const property in region_keyword_books){
+                if(tourStyle_books.includes(region_keyword_books[property].id))
+                    resultBooks.push(region_keyword_books[property]);
+            }
+            return resultBooks;
+        }catch (err){
+            throw err;
+        }
     },
     update: async (
         id,
@@ -125,7 +144,6 @@ module.exports ={
                     TourStyleId : tourStyle[property]
                 })
             }
-            console.log("2")
             return book;
         } catch (err) {
             throw err;

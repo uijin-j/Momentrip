@@ -86,13 +86,13 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_BOOK_BY_USER_ID_FAIL));
         }
     },*/
-    searchBook : async (keyword, res) =>{
-      if(!keyword){
+    searchBook : async (tour_style, TourRegionId, keyword, res) =>{
+      if(!tour_style || !TourRegionId || !keyword){
           console.log("필요값누락");
-          return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.SEARCH_BOOK_FAIL))
+          return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
       }
       try{
-          const books = await bookMethod.searchBook(keyword);
+          const books = await bookMethod.searchBook(tour_style, TourRegionId, keyword);
           return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SEARCH_BOOK_SUCCESS, books));
       }catch (err){
           console.error(err);

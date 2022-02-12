@@ -53,9 +53,9 @@ module.exports={
     },*/
     searchBook : async (req, res) =>{
         const{
-            keyword
-        } = req.params;
-        await bookService.searchBook(keyword, res);
+            tour_style, TourRegionId, keyword
+        } = req.body;
+        await bookService.searchBook(tour_style, TourRegionId, keyword, res);
         return res;
     },
     updateBookById : async (req, res) =>{

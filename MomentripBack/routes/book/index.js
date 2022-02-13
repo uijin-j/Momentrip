@@ -72,7 +72,7 @@ router.get('/user/:category_id', bookController.findBookByCategoryId) //특정 �
 /**
  * @swagger
  * paths:
- *  /momentrip/book/search/{keyword}:
+ *  /momentrip/book/search:
  *    get:
  *     summary: Search book by keyword
  *     tags: [Book]

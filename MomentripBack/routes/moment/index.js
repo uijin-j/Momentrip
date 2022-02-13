@@ -84,6 +84,24 @@ router.get('/book/:book_id',momentController.findMomentByBook); // 특정 book�
 /**
  *  @swagger
  *  paths:
+ *   /momentrip/moment/search:
+ *     get:
+ *       summary: search moment with tag
+ *       tags: [Moment]
+ *       requestBody:
+ *          required: true
+ *          content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MomentSearch'
+ *       responses:
+ *         "200":
+ *           description: "Success"
+ */
+router.get('/search', momentController.searchMoment);
+/**
+ *  @swagger
+ *  paths:
  *   /momentrip/moment/{id}:
  *     patch:
  *       summary: Update your moment
@@ -95,7 +113,7 @@ router.get('/book/:book_id',momentController.findMomentByBook); // 특정 book�
  *          content:
  *           multipart/json:
  *             schema:
- *               $ref: '#/components/schemas/MomentUpdate'
+ *               - $ref: '#/components/schemas/MomentUpdate'
  *       security:
  *          - bearerAuth: []
  *       responses:

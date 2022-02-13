@@ -88,6 +88,20 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR,responseMessage.FIND_ALL_MOMENTS_BY_ONE_BOOK_FAIL));
         }
     },
+    searchMoment : async (keyword, res) => {
+        if(!keyword){
+            console.log("필요값 누락");
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        }
+        try{
+            const moments = await momentMethod.searchMoment(keyword);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SEARCH_MOMENT_SUCCESS, moments));
+        }catch (err){
+            console.err(err);
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SEARCH_MOMENT_FAIL));
+        }
+
+    },
     updateMoment : async (
         id,
         momentTitle,

@@ -25,3 +25,8 @@ components:
           type: file
         momentPublic:
           type: boolean
+    MomentSearch:
+      type : object
+      properties:
+        keyword:
+          type: string

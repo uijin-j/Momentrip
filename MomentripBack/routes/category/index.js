@@ -54,9 +54,9 @@ router.get('/:user_id', categoryController.findCategoryByUserId);
  *        requestBody:
  *          required : true
  *          content:
- *              application/json:
- *                  schema :
- *                      $ref: '#/components/schemas/CategoryUpdate'
+ *             application/json:
+ *               schema :
+ *                  $ref: '#/components/schemas/CategoryUpdate'
  *        responses:
  *            200:
  *              description : Success

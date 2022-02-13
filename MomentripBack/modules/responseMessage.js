@@ -59,6 +59,8 @@ module.exports = {
   FIND_MOMENT_BY_USER_ID_FAIL :"user의 default moment 조회 실패",
   FIND_ALL_MOMENTS_BY_ONE_BOOK_SUCCESS : "하나의 book에 해당하는 모든 moment 조회 성공 ",
   FIND_ALL_MOMENTS_BY_ONE_BOOK_FAIL : "하나의 book에 해당하는 모든 moment 조회 실패",
+  SEARCH_MOMENT_SUCCESS:"모멘트 검색 성공",
+  SEARCH_MOMENT_FAIL:"모멘트 검색 실패",
   UPDATE_MOMENT_SUCCESS : "moment 수정 성공",
   UPDATE_MOMENT_FAIL :"moment 수정 실패",
   DELETE_MOMENT_SUCCESS : "moment 삭제 성공",
@@ -95,4 +97,5 @@ module.exports = {
   UPDATE_Category_FAIL : "카테고리 업데이트 실패",
   DELETE_Category_SUCCESS : "카테고리 삭제 성공",
   DELETE_Category_FAIL : "카테고리 삭제 실패",
+
 }

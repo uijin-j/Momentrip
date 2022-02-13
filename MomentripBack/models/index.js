@@ -40,5 +40,6 @@ TourStyle.associate(db);
 
 db.BookTourStyle = db.sequelize.models.BookTourStyle;
 db.Follow = db.sequelize.models.Follow;
+db.MomentHashtag = db.sequelize.models.MomentHashtag;
 
 module.exports = db;

@@ -1,5 +1,5 @@
 const {
-    Moment, Category, Book
+    Moment, Category, Book, Hashtag, MomentHashtag
 } = require('../models');
 const {
     Op
@@ -60,6 +60,24 @@ module.exports = {
             const moment = Moment.findAll({where: {BookId}});
             return moment;
         }catch(err){
+            throw err;
+        }
+    },
+    searchMoment : async (keyword) => {
+        try{
+            const hashtags = await Hashtag.findOne({where : {hashtag_title : keyword}});
+            const moment_hashtag = await MomentHashtag.findAll({
+                where : { hashtagId : hashtags.id},
+                attributes : ['MomentId']
+            })
+            const moments = [];
+            for(const property in moment_hashtag) {
+                moments[property] = await Moment.findOne(
+                    {where : {id : moment_hashtag[property].MomentId}}
+                )
+            }
+            return moments;
+        }catch (err){
             throw err;
         }
     },

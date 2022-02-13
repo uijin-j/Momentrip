@@ -47,7 +47,11 @@ module.exports = {
     findMomentByBook : async (req,res) => {
         const { book_id } = req.params;
         await momentService.findMomentByBook(book_id,res);
-
+        return res;
+    },
+    searchMoment : async (req, res) => {
+        const {keyword} = req.body;
+        await momentService.searchMoment(keyword, res);
         return res;
     },
     updateMomentById : async (req,res) => {

@@ -12,7 +12,6 @@ module.exports={
             tour_style,
             TourRegionId,
         } = req.body;
-        console.log(book_title);
         await bookService.register(
             book_title,
             trip_start_date,
@@ -54,7 +53,7 @@ module.exports={
     searchBook : async (req, res) =>{
         const{
             tour_style, TourRegionId, keyword
-        } = req.body;
+        } = req.params;
         await bookService.searchBook(tour_style, TourRegionId, keyword, res);
         return res;
     },

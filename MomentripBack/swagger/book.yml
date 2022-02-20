@@ -47,16 +47,3 @@ components:
           type: string
           description: "띄어쓰기 없이 숫자 text로 보내주세요 ex) 1,2,3,5  -> text말고 int 배열로 바로 보낼 수 있으면 단톡방에 말해주세요! "
           required: false
-    BookSearch:
-      type: object
-      properties:
-        tour_style:
-          type: string
-          description: "띄어쓰기 없이 숫자 text로 보내주세요 ex) 1,2,3,5  -> text말고 int 배열로 바로 보낼 수 있으면 단톡방에 말해주세요! "
-          required: false
-        TourRegionId:
-          type: number
-          required: false
-        keyword:
-          type: string
-          required: false

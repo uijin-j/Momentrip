@@ -21,7 +21,7 @@ const authCheck = require('../../middleware/authCheck');
  *          required: true
  *          description: Create moment
  *          content:
- *              multipart/json:
+ *              multipart/form-data:
  *                  schema:
  *                      $ref: '#/components/schemas/MomentPost'
  *       security:
@@ -111,16 +111,16 @@ router.get('/search', momentController.searchMoment);
  *       requestBody:
  *          required: true
  *          content:
- *           multipart/json:
- *             schema:
- *               - $ref: '#/components/schemas/MomentUpdate'
+ *             multipart/form-data:
+ *               schema:
+ *                 $ref: '#/components/schemas/MomentUpdate'
  *       security:
  *          - bearerAuth: []
  *       responses:
  *         "200":
  *           description: "Success"
  */
-router.patch('/:id', authCheck.isLoggedIn, upload.single('momentImg'), momentController.updateMomentById); // 특정 moment 업데이트
+router.patch('/:id'/*, authCheck.isLoggedIn*/, upload.single('momentImg'), momentController.updateMomentById); // 특정 moment 업데이트
 /**
  *  @swagger
  *  paths:

@@ -21,7 +21,7 @@ const authCheck = require('../../middleware/authCheck');
  *          required: true
  *          description: book_hit 0 이상으로 , 존재하는 유저Id로 넣기
  *          content:
- *            multipart/json:
+ *            multipart/form-data:
  *              schema :
  *                  $ref: '#/components/schemas/BookPost'
  *      security:
@@ -36,8 +36,8 @@ const authCheck = require('../../middleware/authCheck');
  *        200:
  *              description: Success
  */
-// router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
-router.post('/', authCheck.isLoggedIn, upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
+router.post('/', upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
+// router.post('/', authCheck.isLoggedIn, upload.single('book_img'), bookController.registerBook); // book 만들기  (image 1개 올리기)
 
 router.get('/', bookController.findAllBook) //book 모두 불러오기
 /**
@@ -72,22 +72,19 @@ router.get('/user/:category_id', bookController.findBookByCategoryId) //특정 �
 /**
  * @swagger
  * paths:
- *  /momentrip/book/search:
+ *  /momentrip/book/search/{tour_style}/{TourRegionId}/{keyword}:
  *    get:
  *     summary: Search book by keyword
  *     tags: [Book]
- *     requestBody:
- *          required: true
- *          description: 필터(tour style, tour region)는 book에만 적용   /    keyword는 book title에, moment의 태그에 적용
- *          content:
- *            application/json:
- *              schema :
- *                  $ref: '#/components/schemas/BookSearch'
+ *     parameters:
+ *          - $ref : '#/components/parameters/queryTourStyle'
+ *          - $ref : '#/components/parameters/queryTourRegion'
+ *          - $ref : '#/components/parameters/queryKeyword'
  *     responses:
  *          "200":
  *              description: Success
  */
-router.get('/search', bookController.searchBook)
+router.get('/search/:tour_style/:TourRegionId/:keyword', bookController.searchBook)
 /**
  * @swagger
  * paths:
@@ -99,7 +96,7 @@ router.get('/search', bookController.searchBook)
  *          required: true
  *          description: update book
  *          content:
- *            multipart/json:
+ *            multipart/form-data:
  *              schema:
  *                  $ref: '#/components/schemas/BookUpdate'
  *      security:

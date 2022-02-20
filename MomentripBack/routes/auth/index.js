@@ -67,7 +67,7 @@ router.post('/signIn' ,(req, res, next) => {
  *       requestBody:
  *          required: true
  *          content:
- *           multipart/json:
+ *           multipart/form-data:
  *             schema:
  *               $ref: '#/components/schemas/UserSignUp'
  *       responses:

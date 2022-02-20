@@ -36,3 +36,18 @@ components:
       required : true
       schema:
         type: integer
+    queryTourStyle:
+      name: tour_style
+      in: path
+      schema:
+        type: string
+    queryTourRegion:
+      name: TourRegionId
+      in: path
+      schema:
+        type: integer
+    queryKeyword:
+      name: keyword
+      in: path
+      schema:
+        type: string

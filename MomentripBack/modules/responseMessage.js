@@ -76,6 +76,8 @@ module.exports = {
   FIND_BOOK_BY_ID_FAIL : "특정 모멘트북 조회 실패",
   FIND_BOOK_BY_CATEGORY_ID_SUCCESS : "특정 카테고리 모멘트북 조회 성공",
   FIND_BOOK_BY_CATEGORY_ID_FAIL : "특정 카테고리 모멘트북 조회 실패",
+  FIND_BOOK_BY_USER_ID_SUCCESS : "특정 유저 모멘트북 조회 성공",
+  FIND_BOOK_BY_USER_ID_FAIL : "특정 유저 모멘트북 조회 실패",
   UPDATE_BOOK_SUCCESS : "모멘트북 업데이트 성공",
   UPDATE_BOOK_FAIL : "모멘트북 업데이트 실패",
   DELETE_BOOK_SUCCESS : "모멘트북 삭제 성공",

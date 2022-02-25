@@ -42,14 +42,19 @@ module.exports={
 
         return res;
     },
-    /*findBookByFollowingId : async (req,res) => {
+    findBookByUserId : async (req, res) => {
+        const {user_id} = req.params;
+        await bookService.findBookByUserId(user_id, res);
+        return res
+    }
+    ,
+    findFollowingUserBook : async (req,res) => {
         const {
             user_id,
         } = req.params;
-        await bookService.findBookByFollowingId(user_id, res);
-
+        await bookService.findFollowingUserBook(user_id, res);
         return res;
-    },*/
+    },
     searchBook : async (req, res) =>{
         const{
             tour_style, TourRegionId, keyword

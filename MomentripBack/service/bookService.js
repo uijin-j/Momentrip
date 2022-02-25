@@ -2,7 +2,8 @@ const util = require("../modules/util")
 const statusCode = require("../modules/statusCode");
 const responseMessage = require('../modules/responseMessage');
 const bookMethod = require('../method/bookMethod');
-const userController = require('../controller/userController');
+const userMethod = require('../method/userMethod');
+const categoryMethod = require('../method/categoryMethod');
 
 module.exports = {
     register : async (
@@ -56,7 +57,6 @@ module.exports = {
                 console.log("해당 배너가 존재하지 않습니다.");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_EXIST_BOOK))
             }
-
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_BOOK_BY_ID_SUCCESS, book));
         }catch (err){
             console.error(err);
@@ -78,21 +78,38 @@ module.exports = {
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_BOOK_BY_CATEGORY_ID_FAIL));
         }
     },
-    /*findBookByFollowingId : async (user_id, res) => {
+    findBookByUserId : async (user_id, res) => {
+        if(!user_id){
+            console.log("필요값 누락")
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE))
+        }
+        try{
+            const books = await bookMethod.findBookByUserId(user_id);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_BOOK_BY_USER_ID_SUCCESS, books));
+        }catch (err){
+            console.error(err);
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.INT))
+        }
+    },
+    findFollowingUserBook : async (user_id, res) => {
         if(!user_id){
             console.log("필요값 누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE))
         }
         try{
-            const following_id = await userController.findFollowingById(user_id);
-            const book = await bookMethod.findByUserId(following_id);
-            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_BOOK_BY_ID_SUCCESS, book));
+            const user = [];
+            const followingUser = await userMethod.findUserFollow(user_id);
+            for( const property in followingUser.following) user.push(followingUser.following[property].id)
+            let books = [];
+            for(const property in user)
+                books = books.concat([] , await bookMethod.findBookByUserId(user[property]));
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.FIND_BOOK_BY_ID_SUCCESS, books));
         }
         catch(err){
             console.log(err);
             return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FIND_BOOK_BY_USER_ID_FAIL));
         }
-    },*/
+    },
     searchBook : async (tour_style, TourRegionId, keyword, res) =>{
       if(!tour_style || !TourRegionId || !keyword){
           console.log("필요값누락");

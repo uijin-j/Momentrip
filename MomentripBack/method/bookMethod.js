@@ -1,5 +1,5 @@
 const{
-    Book, BookTourStyle
+    Book, BookTourStyle, Category
 }= require('../models');
 
 const {
@@ -83,9 +83,19 @@ module.exports = {
             throw err;
         }
     },
-    /*findByUserId : async (following_id) => {
-
-    },*/
+    findBookByUserId : async (user_id) => {
+        try{
+            const category_id = []
+            const categories = await Category.findAll({where : {UserId : user_id}})
+            for(const property in categories) category_id.push(categories[property].id)
+            let books = [];
+            for(const property in category_id)
+                books = books.concat([] , await Book.findAll({where : {CategoryId : category_id[property]}}))
+            return books;
+        }catch (err){
+            throw err;
+        }
+    },
     searchBook : async (tour_style, TourRegionId, keyword) => {
         try{
             const region_keyword_books = await Book.findAll(

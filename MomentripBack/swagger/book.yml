@@ -9,9 +9,6 @@ components:
           type: boolean
         book_img:
           type: file
-#          schema:
-#            type: file
-#            format: binary
         book_hit:
           type: number
         trip_start_date:

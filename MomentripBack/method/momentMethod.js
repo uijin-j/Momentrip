@@ -21,6 +21,19 @@ module.exports = {
                 moment_public : momentPublic,
                 BookId
             })
+
+            const hashtags = momentContent.match(/#[^s#]*/g);
+            if(hashtags){
+                //findOrCreate : 조회 후 있으면 조회 하고, 없으면 생성해 중복 저장되지 않게 함
+                //findOrCreate는 Promise이기 때문에 Promise.all 하면 result가 나오는 구조
+                const result = await Promise.all(hashtags.map(tag => {
+                    return Hashtag.findOrCreate({
+                        where: { hashtag_title : tag.slice(1).toLowerCase()},
+                    })
+                }),
+            );
+                await moment.addHashtags(result.map(r => r[0]));
+            }
             return moment;
         }catch(err){
             throw err;

@@ -1,5 +1,5 @@
 const {
-    Hashtag
+    MomentHashtag
 } = require('../models');
 const {
     Op

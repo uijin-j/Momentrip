@@ -1,5 +1,5 @@
 const momentService = require('../service/momentService');
-const hashtagService = require('../service/hashtagService');
+
 module.exports = {
     registerMoment : async (req,res) => {
         const momentImg = req.file.key;

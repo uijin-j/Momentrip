@@ -1,8 +1,4 @@
 const userService = require('../service/userService');
-const {
-    User,
-    Follow
-} = require('../models');
 
 
 module.exports ={

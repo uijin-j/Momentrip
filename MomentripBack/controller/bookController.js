@@ -11,6 +11,7 @@ module.exports={
             CategoryId,
             tour_style,
             TourRegionId,
+            UserId
         } = req.body;
         await bookService.register(
             book_title,
@@ -22,6 +23,7 @@ module.exports={
             CategoryId,
             tour_style,
             TourRegionId,
+            UserId,
             res);
         return res;
     },

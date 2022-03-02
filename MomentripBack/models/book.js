@@ -42,6 +42,7 @@ module.exports = class Book extends Sequelize.Model {
     static associate(db) {
         db.Book.hasMany(db.Moment);
         db.Book.belongsTo(db.Category);
+        db.Book.belongsTo(db.User);
         db.Book.belongsTo(db.TourRegion);
         db.Book.belongsToMany(db.TourStyle,{ through: 'BookTourStyle' });
     }

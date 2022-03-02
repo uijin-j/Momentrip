@@ -7,7 +7,7 @@ const {
 } = require("sequelize");
 
 module.exports = {
-    defaultRegister : async (CategoryId)=>{
+    defaultRegister : async (CategoryId, UserId)=>{
         try{
             const book = await Book.create({
                 book_title : "momentrip_default_Book",
@@ -16,8 +16,8 @@ module.exports = {
                 book_hit : 0,
                 trip_start_date : "",
                 trip_end_date : "",
-                CategoryId : CategoryId,
-                // TourRegionId,
+                CategoryId,
+                UserId
             })
             return book;
         }catch (err){
@@ -34,6 +34,7 @@ module.exports = {
         CategoryId,
         tour_style,
         TourRegionId,
+        UserId
     )=>{
         try{
             book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
@@ -46,6 +47,7 @@ module.exports = {
                 trip_end_date,
                 CategoryId,
                 TourRegionId,
+                UserId
             })
             const tourStyle = tour_style.split(",");
             for(const property in tourStyle){
@@ -85,12 +87,13 @@ module.exports = {
     },
     findBookByUserId : async (user_id) => {
         try{
-            const category_id = []
-            const categories = await Category.findAll({where : {UserId : user_id}})
-            for(const property in categories) category_id.push(categories[property].id)
-            let books = [];
-            for(const property in category_id)
-                books = books.concat([] , await Book.findAll({where : {CategoryId : category_id[property]}}))
+            // const category_id = []
+            // const categories = await Category.findAll({where : {UserId : user_id}})
+            // for(const property in categories) category_id.push(categories[property].id)
+            // let books = [];
+            // for(const property in category_id)
+            //     books = books.concat([] , await Book.findAll({where : {CategoryId : category_id[property]}}))
+            const books = await Book.findAll({where:{UserId : user_id}});
             return books;
         }catch (err){
             throw err;

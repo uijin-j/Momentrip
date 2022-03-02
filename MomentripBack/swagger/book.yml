@@ -20,6 +20,8 @@ components:
           required: false
         CategoryId:
           type: number
+        UserId:
+          type: number
         tour_style:
           type: string
           description: "띄어쓰기 없이 숫자 text로 보내주세요 ex) 1,2,3,5  -> text말고 int 배열로 바로 보낼 수 있으면 단톡방에 말해주세요!"

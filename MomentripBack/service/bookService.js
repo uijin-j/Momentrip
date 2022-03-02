@@ -16,6 +16,7 @@ module.exports = {
         CategoryId,
         tour_style,
         TourRegionId,
+        UserId,
         res) =>{
         if( !book_title || !book_img){
             console.log("필요값 누락");
@@ -30,7 +31,8 @@ module.exports = {
                 book_hit,
                 CategoryId,
                 tour_style,
-                TourRegionId);
+                TourRegionId,
+                UserId);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.REGISTER_BOOK_SUCCESS, book))
         }catch(err){
             console.error(err);

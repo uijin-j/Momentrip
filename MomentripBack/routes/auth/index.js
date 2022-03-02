@@ -92,7 +92,7 @@ router.post('/signUp', upload.single('profile_img'), async (req,res,next) => {
             profile_img
         });
         const defaultCategory = await categoryMethod.defaultRegister(user.id);
-        const defaultBook = await bookMethod.defaultRegister(defaultCategory.id);
+        const defaultBook = await bookMethod.defaultRegister(defaultCategory.id, user.id);
 
         return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.SIGN_UP_SUCCESS, user));
     }catch(error){

@@ -28,6 +28,8 @@ components:
           type: string
         profile_img :
           type: file
+        background_img:
+          type: file
     UserFollowing:
       type: object
       properties:

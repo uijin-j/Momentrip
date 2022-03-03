@@ -22,7 +22,9 @@ module.exports ={
         return res;
     },
     updateUser : async (req, res) => {
-        let profile_img = req.file.location;
+        let {profile_img, background_img} = req.files;
+        profile_img = profile_img[0].location;
+        background_img = background_img[0].location;
         const {user_id} = req.params;
         const {email,
             password,
@@ -34,6 +36,7 @@ module.exports ={
             name,
             snsId,
             profile_img,
+            background_img,
             res);
         return res;
     },

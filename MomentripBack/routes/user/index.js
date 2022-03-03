@@ -80,7 +80,7 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *                  description: Success
  */
 //user_id 로 유저 정보 업데이트하기
-router.patch('/:user_id' , userController.updateUser);
+router.patch('/:user_id' ,upload.fields([{ name: "profile_img" }, { name: "background_img" }]), userController.updateUser);
 /**
  * @swagger
  *  paths:

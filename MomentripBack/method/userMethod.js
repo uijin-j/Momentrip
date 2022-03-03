@@ -40,14 +40,15 @@ module.exports ={
             throw err;
         }
     },
-    updateUser : async (id, email, password, name, snsId, profile_img) => {
+    updateUser : async (id, email, password, name, snsId, profile_img, background_img) => {
         try{
             const user = await User.update({
                 email,
                 password,
                 name,
                 snsId,
-                profile_img
+                profile_img,
+                background_img
             }, {
                 where : { id }
             });

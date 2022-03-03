@@ -70,8 +70,9 @@ module.exports = {
         name,
         snsId,
         profile_img,
-        res) => {
-        if(!id || !email || !password ||!name ||!snsId || !profile_img){
+        background_img,
+    res) => {
+        if(!id || !email || !password ||!name ||!snsId || !profile_img || !background_img){
             console.log("필요값누락");
             return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         }
@@ -81,7 +82,7 @@ module.exports = {
                 console.log("해당 유저 정보 없음");
                 return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.OUT_OF_VALUE));
             }
-            const user = await userMethod.updateUser(id, email, password, name, snsId, profile_img);
+            const user = await userMethod.updateUser(id, email, password, name, snsId, profile_img, background_img);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.UPDATE_USER_SUCCESS, user));
         }catch (err){
             console.error(err);

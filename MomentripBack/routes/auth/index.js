@@ -73,7 +73,7 @@ router.post('/signIn' ,(req, res, next) => {
  *         "200":
  *           description: "Success login"
  */
-router.post('/signUp',upload.fields([{ name: "profile_img" }, { name: "background_img" }]),  async (req,res,next) => {
+router.post('/signUp', upload.fields([{ name: "profile_img" }, { name: "background_img" }]),  async (req,res,next) => {
     let {profile_img, background_img} = req.files;
     profile_img = profile_img[0].location;
     background_img = background_img[0].location;

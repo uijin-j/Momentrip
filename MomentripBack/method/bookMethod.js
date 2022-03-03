@@ -37,7 +37,6 @@ module.exports = {
         UserId
     )=>{
         try{
-            book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
             const book = await Book.create({
                 book_title,
                 book_img,
@@ -137,7 +136,6 @@ module.exports = {
         TourRegionId,
     ) => {
         try {
-            book_img = "https://momentrip1.s3.ap-northeast-2.amazonaws.com/"+book_img;
             const book = await Book.update({
                 book_title,
                 book_img,

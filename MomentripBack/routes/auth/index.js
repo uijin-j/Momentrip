@@ -13,9 +13,8 @@ const router = express.Router();
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const upload = require('../../modules/multer');
-const jwtStrategy = require('../../passport/jwtStrategy');
-const {local} = require('../../passport/index')
-
+// const jwtStrategy = require('../../passport/jwtStrategy');
+// const {local} = require('../../passport/index')
 
 require('dotenv').config();
 /**
@@ -74,10 +73,17 @@ router.post('/signIn' ,(req, res, next) => {
  *         "200":
  *           description: "Success login"
  */
-router.post('/signUp', upload.single('profile_img'), async (req,res,next) => {
-    const profile_img = req.file.key; //이미지 하나 올리기 코드
+router.post('/signUp',upload.fields([{ name: "profile_img" }, { name: "background_img" }]),  async (req,res,next) => {
+    let {profile_img, background_img} = req.files;
+    profile_img = profile_img[0].location;
+    background_img = background_img[0].location;
+    /*
+    upload.array('image',2)    미들웨어에 이걸로 넣어주면 image 배열로 받음
+    const image  = req.files;
+    console.log( image[0].location );
+    console.log( image[1].location );
+    */
     const { email, password, name,  snsId} = req.body;
-
     try{
         const exUser = await User.findOne({where: {email}});
         if(exUser){
@@ -89,7 +95,8 @@ router.post('/signUp', upload.single('profile_img'), async (req,res,next) => {
             password : hash,
             name,
             snsId,
-            profile_img
+            profile_img,
+            background_img,
         });
         const defaultCategory = await categoryMethod.defaultRegister(user.id);
         const defaultBook = await bookMethod.defaultRegister(defaultCategory.id, user.id);

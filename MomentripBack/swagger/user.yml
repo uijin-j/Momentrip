@@ -13,6 +13,8 @@ components:
           type: string
         profile_img :
           type: file
+        background_img:
+          type: file
     UserUpdate :
       type : object
       properties :

@@ -2,7 +2,7 @@ const momentService = require('../service/momentService');
 
 module.exports = {
     registerMoment : async (req,res) => {
-        const momentImg = req.file.key;
+        const momentImg = req.file.location;
         const {
             momentTitle,
             momentContent,
@@ -45,7 +45,7 @@ module.exports = {
     },
     updateMomentById : async (req,res) => {
         const { id } = req.params;
-        const momentImg = req.file.key;
+        const momentImg = req.file.location;
         const {
             momentTitle,
             momentContent,

@@ -22,7 +22,7 @@ module.exports ={
         return res;
     },
     updateUser : async (req, res) => {
-        let profile_img = req.file.key;
+        let profile_img = req.file.location;
         const {user_id} = req.params;
         const {email,
             password,

@@ -1,7 +1,7 @@
 const bookService = require('../service/bookService');
 module.exports={
     registerBook: async (req, res) => {
-        const book_img = req.file.key; //이미지 하나 올리기 코드
+        const book_img = req.file.location; //이미지 하나 올리기 코드
         const {
             book_title,
             trip_start_date,
@@ -65,7 +65,7 @@ module.exports={
         return res;
     },
     updateBookById : async (req, res) =>{
-        const book_img = req.file.key; //이미지 하나 올리기 코드
+        const book_img = req.file.location; //이미지 하나 올리기 코드
         const { id } = req.params;
         const {
             book_title,

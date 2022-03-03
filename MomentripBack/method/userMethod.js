@@ -42,9 +42,10 @@ module.exports ={
     },
     updateUser : async (id, email, password, name, snsId, profile_img, background_img) => {
         try{
+            const hash = await bcrypt.hash(password,12);
             const user = await User.update({
                 email,
-                password,
+                password : hash,
                 name,
                 snsId,
                 profile_img,

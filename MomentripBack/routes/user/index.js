@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../../models/user');
 const userController = require('../../controller/userController');
+const upload = require('../../modules/multer');
 
 const router = express.Router();
 
@@ -70,7 +71,7 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *              required: true
  *              description: 유저 업데이트 하기
  *              content:
- *                  multipart/json:
+ *                  multipart/form-data:
  *                      schema:
  *                          $ref: '#/components/schemas/UserUpdate'
  *          security:
@@ -80,7 +81,7 @@ router.get('/select/email/:email', userController.findUserByEmail);
  *                  description: Success
  */
 //user_id 로 유저 정보 업데이트하기
-router.patch('/:user_id' ,upload.fields([{ name: "profile_img" }, { name: "background_img" }]), userController.updateUser);
+router.patch('/:user_id', upload.fields([{ name: "profile_img" }, { name: "background_img" }]), userController.updateUser);
 /**
  * @swagger
  *  paths:
